@@ -1,0 +1,250 @@
+{
+  "profile": {
+    "handle": "Kinata",
+    "fullName": "Achmad Kendhikinata Kuswirawanto",
+    "role": "CGI Generalist & Digital Designer",
+    "tagline": "Crafting high-fidelity 3D environments, hard-surface assets, and architectural visualizations, paired with commercial graphic design, motion, and digital product craft.",
+    "location": "Surabaya, Indonesia",
+    "email": "kendhikinata24@gmail.com",
+    "phone": "+62 858 5751 1756",
+    "whatsappUrl": "https://wa.me/6285857511756?text=Hi%20Kinata,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!",
+    "status": "Available for Q2-Q3 Commissions & Remote Roles",
+    "avatar": "/images/avatar.jpg",
+    "socials": [
+      {
+        "name": "ArtStation",
+        "url": "https://artstation.com",
+        "icon": "artstation"
+      },
+      {
+        "name": "Behance",
+        "url": "https://behance.net",
+        "icon": "behance"
+      },
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com",
+        "icon": "linkedin"
+      },
+      {
+        "name": "Instagram",
+        "url": "https://instagram.com",
+        "icon": "instagram"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com",
+        "icon": "github"
+      },
+      {
+        "name": "Email",
+        "url": "mailto:kendhikinata24@gmail.com",
+        "icon": "email"
+      }
+    ]
+  },
+  "about": [
+    "I'm an animation and 3D computer graphics practitioner based in Surabaya, Indonesia, holding a background from SMKN 2 Surabaya (Jurusan Animasi). Since 2020, I have immersed myself in the art of 3D modeling, hard-surface precision, architectural rendering, and digital world-building.",
+    "Over the past few years, I have executed more than 10 freelance 3D commissions for international clients, delivering game-ready props, stylized fantasy dioramas, and photorealistic architectural visualizations (Archviz) using Blender, Autodesk Maya, and Substance 3D Painter.",
+    "What sets my work apart is my cross-disciplinary versatility: alongside 3D and CGI, I create high-impact graphic campaigns and video productions (having directed 30+ property reels and marketing assets at PT Wong Bejo Joyo), as well as interactive UI/UX interfaces for game HUDs and modern web platforms. I thrive at the frontier where visual art meets functional software."
+  ],
+  "experience": [
+    {
+      "period": "2024 — PRESENT",
+      "role": "Freelance 3D Artist — Environment & Hard-Surface Specialist",
+      "company": "Independent / Global Remote",
+      "description": "Completed over 10 international 3D modeling and visualization projects. Created game-ready low-poly and stylized 3D assets, modular environment sets, and architectural renderings. Managed the end-to-end pipeline from conceptual geometry and high-to-low poly baking to UV unwrap, PBR texturing, and photorealistic lighting.",
+      "tags": ["Blender", "Substance 3D", "Maya", "PBR Texturing", "Archviz", "Hard-Surface"]
+    },
+    {
+      "period": "MAR 2024 — DEC 2024",
+      "role": "Digital Marketing & Videographer Intern",
+      "company": "PT Wong Bejo Joyo",
+      "description": "Produced and directed 30+ high-production real estate promotional videos for Instagram Reels and TikTok. Spearheaded weekly content strategies, hashtag research, and analytics optimization, achieving a 45% lift in social engagement rate. Collaborated with marketing teams on paid Meta Ads campaigns.",
+      "tags": ["Adobe Premiere Pro", "Photoshop", "CapCut Pro", "Meta Business Suite", "Reels Production", "Creative Direction"]
+    },
+    {
+      "period": "2020 — PRESENT",
+      "role": "Active Contributor & Community Member",
+      "company": "Blender Community & Hidden Dev",
+      "description": "Regular participant in global 3D modeling challenges, topology reviews, and asset critiques within the Blender community. Active contributor in the Hidden Dev community, collaborating on web UI/UX projects, automation tools, and front-end code experiments.",
+      "tags": ["Blender Discord", "Hidden Dev", "Web Dev", "UI/UX", "3D Peer Critique"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Juara 1 Lomba 3D Modeling",
+      "issuer": "Event Internal Jurusan Animasi SMKN 2 Surabaya",
+      "year": "2023",
+      "detail": "Awarded 1st place across the entire animation cohort for hard-surface asset modeling and creative lighting."
+    },
+    {
+      "title": "Final Graduation Film: 3D Animated Short",
+      "issuer": "SMKN 2 Surabaya Final Production",
+      "year": "2025",
+      "detail": "Served as lead 3D modeler and compositor for the final animated short film using Blender and Premiere Pro."
+    },
+    {
+      "title": "Cambridge CIE Primary International Program",
+      "issuer": "Khadijah 2 Primary School (CIE Centre UD 268)",
+      "year": "2013 — 2019",
+      "detail": "International standard English and mathematics curriculum certification."
+    }
+  ],
+  "projects": [
+    {
+      "id": "archviz-interior",
+      "title": "Neo-Archviz: Brutalist Sanctuary",
+      "category": "3d-cgi",
+      "categoryLabel": "3D & Archviz",
+      "year": "2025",
+      "image": "/images/projects/archviz_interior.jpg",
+      "summary": "Photorealistic architectural visualization of a brutalist luxury residence with panoramic forest vistas, custom PBR concrete shaders, and cinematic morning sunbeams.",
+      "description": "A comprehensive study in high-end architectural rendering and mood crafting. Featuring custom procedural board-formed concrete textures, accurate IES interior lighting, mid-century Scandinavian furniture modeling, and Cycles volumetric ray-tracing.",
+      "tools": ["Blender 4.3", "Cycles", "Substance Painter", "Photoshop"],
+      "link": "https://artstation.com",
+      "featured": true,
+      "stats": "Photoreal 4K Render · PBR Workflow"
+    },
+    {
+      "id": "hardsurface-mech",
+      "title": "Aethel-4 Industrial Combat Drone",
+      "category": "3d-cgi",
+      "categoryLabel": "Hard-Surface 3D",
+      "year": "2024",
+      "image": "/images/projects/hardsurface_mech.jpg",
+      "summary": "High-poly tactical UGV tracked combat drone with detailed mechanical assemblies, weathered decals, and high-to-low poly baked normal maps.",
+      "description": "Modeled using non-destructive subdivision workflows in Blender and Autodesk Maya. Textured inside Substance 3D Painter with multi-layered edge scratches, hydraulic fluid stains, and industrial warning stencils. Rendered in studio lighting.",
+      "tools": ["Blender", "Substance 3D", "Maya", "PBR Shading"],
+      "link": "https://artstation.com",
+      "featured": true,
+      "stats": "Hard-Surface Modeling · Weathered PBR"
+    },
+    {
+      "id": "stylized-shrine",
+      "title": "Moonlit Torii Shrine Island",
+      "category": "3d-cgi",
+      "categoryLabel": "Stylized 3D Art",
+      "year": "2024",
+      "image": "/images/projects/stylized_shrine.jpg",
+      "summary": "Enchanted floating Japanese Torii island environment with glowing sakura blossom canopy, stylized waterfalls, and hand-painted lighting ambiance.",
+      "description": "Award-winning stylized diorama designed for real-time game engines. Includes custom stylized leaf particle clusters, emissive lantern shaders, stone stairs, and whimsical celestial clouds inspired by Japanese anime aesthetics.",
+      "tools": ["Blender", "ZBrush", "Photoshop", "Stylized Shaders"],
+      "link": "https://artstation.com",
+      "featured": true,
+      "stats": "Stylized 3D · Hand-Crafted Shaders"
+    },
+    {
+      "id": "marketing-reels",
+      "title": "Aurora Residences: Social Campaign",
+      "category": "graphic-motion",
+      "categoryLabel": "Graphic & Motion",
+      "year": "2024",
+      "image": "/images/projects/marketing_reels.jpg",
+      "summary": "Full visual identity and 30+ short-form promotional reels campaign for luxury property developments, driving a 45% surge in engagement.",
+      "description": "Crafted end-to-end visual marketing collateral including isometric social templates, typography layouts, video editing with rhythm-matched motion graphics, and Meta ad campaign assets for PT Wong Bejo Joyo.",
+      "tools": ["Premiere Pro", "Photoshop", "CapCut Pro", "Meta Business"],
+      "link": "https://instagram.com",
+      "featured": true,
+      "stats": "30+ Videos · 45% Engagement Lift"
+    },
+    {
+      "id": "game-ui-kit",
+      "title": "Iso-UI: Sci-Fi RPG Interface System",
+      "category": "ui-ux",
+      "categoryLabel": "Game UI / UX",
+      "year": "2025",
+      "image": "/images/projects/game_ui_kit.jpg",
+      "summary": "Comprehensive dark sci-fi video game interface design system with holographic tactical HUD, inventory grid, and weapon loadout modal.",
+      "description": "Built in Figma with an atomic component system. Designed for both desktop and touch controls, featuring cyan and amber neon status indicators, radar minimap, weapon upgrade modals, and responsive layout scaling.",
+      "tools": ["Figma", "Photoshop", "Design System", "CSS"],
+      "link": "https://github.com",
+      "featured": true,
+      "stats": "Complete UI Kit · 60+ Components"
+    }
+  ],
+  "skills": {
+    "3D & CGI Visualization": [
+      "Blender 3D",
+      "Autodesk Maya",
+      "Substance 3D Painter",
+      "Cycles / Eevee Engine",
+      "Architectural Rendering (Archviz)",
+      "Hard-Surface Modeling",
+      "Environment Dioramas",
+      "Low-Poly & Game Ready Assets",
+      "PBR Texturing & UV Mapping",
+      "Lighting & Volumetrics"
+    ],
+    "Graphic & Motion Design": [
+      "Adobe Photoshop",
+      "Adobe Premiere Pro",
+      "CapCut Pro",
+      "Motion Graphics & Reels",
+      "Brand Identity & Posters",
+      "Commercial Property Video Production",
+      "Canva & Meta Business Suite"
+    ],
+    "Interactive, UI/UX & Web": [
+      "Figma UI/UX Design",
+      "Game HUD & Interface Kits",
+      "HTML5 & Modern CSS3",
+      "JavaScript (Vanilla / ES6+)",
+      "Next.js & React Basics",
+      "Responsive Layout Architecture",
+      "Git & GitHub Workflow"
+    ],
+    "Soft Skills & Management": [
+      "International Client Communication",
+      "Deadline & Sprint Management",
+      "Community Collaboration",
+      "Bilingual (Indonesian & English)"
+    ]
+  },
+  "activityFeed": [
+    {
+      "id": "act-1",
+      "date": "April 2026",
+      "badge": "RENDER",
+      "title": "Completed New Hard-Surface Render Series",
+      "description": "Finished high-poly industrial combat drone series with weathered multi-channel PBR textures."
+    },
+    {
+      "id": "act-2",
+      "date": "March 2026",
+      "badge": "AVAILABILITY",
+      "title": "Open for Q2-Q3 Commissions",
+      "description": "Accepting new projects in 3D environment modeling, archviz renders, and visual design."
+    },
+    {
+      "id": "act-3",
+      "date": "February 2026",
+      "badge": "UI/UX",
+      "title": "Shipped Iso-UI Sci-Fi Game Kit",
+      "description": "Published comprehensive 60+ component sci-fi game HUD and inventory kit on Figma."
+    }
+  ],
+  "resumeTracks": [
+    {
+      "id": "track-cgi",
+      "name": "3D & CGI Specialist",
+      "tagline": "Specialized focus on 3D Modeling, Hard-Surface, Archviz & Game Assets",
+      "pdfUrl": "/cv/Kendhikinata_CV_3D_Artist.pdf",
+      "summary": "Passionate 3D Artist and SMKN 2 Surabaya Animation graduate with proven track record of 10+ international client commissions. Expert in Blender, Maya, and Substance 3D Painter across hard-surface modeling, environment art, and architectural rendering."
+    },
+    {
+      "id": "track-marketing",
+      "name": "Digital Marketing & Design",
+      "tagline": "Specialized focus on Social Campaigns, Video Direction & Visual Branding",
+      "pdfUrl": "/cv/Kendhikinata_CV_Digital_Marketing.pdf",
+      "summary": "Creative digital designer and videographer with hands-on corporate internship experience at PT Wong Bejo Joyo. Generated 30+ property promotional videos, lifted engagement by 45%, and managed targeted Meta campaigns."
+    },
+    {
+      "id": "track-generalist",
+      "name": "Creative Technologist (All-Round)",
+      "tagline": "Full multi-disciplinary portfolio spanning 3D, Graphic, Motion, and Web UI/UX",
+      "pdfUrl": "/cv/Kendhikinata_CV_Generalist.pdf",
+      "summary": "Versatile digital creative bridging high-fidelity CGI visual craft with modern graphic design, video editing, and interactive front-end web technologies."
+    }
+  ]
+}
