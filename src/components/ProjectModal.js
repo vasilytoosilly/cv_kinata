@@ -55,6 +55,11 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           <h2 className="modal-title">{project.title}</h2>
+          {project.role && (
+            <div className="modal-role-tag">
+              {project.role}
+            </div>
+          )}
 
           <p className="modal-desc">{project.description || project.summary}</p>
 
@@ -79,15 +84,15 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {project.link && (
-            <div style={{ marginTop: "8px" }}>
+            <div style={{ marginTop: "12px" }}>
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary-action"
+                className="btn-sweep-primary"
               >
-                <span>View Full Showcase on {project.category === "3d-cgi" ? "ArtStation" : project.category === "graphic-motion" ? "Behance" : "Project Source"}</span>
-                <span>↗</span>
+                <span>VIEW SHOWCASE ON {project.category === "3d-cgi" ? "ARTSTATION" : project.category === "graphic-motion" ? "BEHANCE" : "SOURCE"}</span>
+                <span className="btn-arrow">↗</span>
               </a>
             </div>
           )}

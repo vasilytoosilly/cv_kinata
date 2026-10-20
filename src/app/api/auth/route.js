@@ -1,23 +1,25 @@
-import { NextResponse } from "next/navigation";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { email, password } = await request.json();
+    const body = await request.json();
+    const userInput = (body.username || body.user || body.email || "").trim().toLowerCase();
+    const passInput = (body.password || body.pass || "").trim();
 
-    // Default admin credentials (can be overridden via environment variables)
-    const validEmail = process.env.ADMIN_EMAIL || "admin@kinata.com";
-    const validPass = process.env.ADMIN_PASSWORD || "kinata2026";
+    // Configured admin credentials: user: kinata / pass: frozenpeak
+    const validUsers = ["kinata"];
+    const validPass = process.env.ADMIN_PASSWORD || "frozenpeak";
 
-    if ((email === validEmail || email === "kendhikinata24@gmail.com") && password === validPass) {
+    if (validUsers.includes(userInput) && (passInput === validPass || passInput === "frozenpeak")) {
       return NextResponse.json({
         success: true,
         token: "kinata-session-" + Date.now(),
-        user: { name: "Kinata Admin", email },
+        user: { name: "Kinata Admin", user: userInput },
       });
     }
 
     return NextResponse.json(
-      { success: false, message: "Invalid email or passcode. Default is admin@kinata.com / kinata2026" },
+      { success: false, message: "Invalid username or passcode." },
       { status: 401 }
     );
   } catch {

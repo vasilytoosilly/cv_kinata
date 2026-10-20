@@ -2,14 +2,14 @@
   "profile": {
     "handle": "Kinata",
     "fullName": "Achmad Kendhikinata Kuswirawanto",
-    "role": "CGI Generalist & Digital Designer",
+    "role": "3D Animation & CGI Generalist · Multimedia & Graphic Designer",
     "tagline": "Crafting high-fidelity 3D environments, hard-surface assets, and architectural visualizations, paired with commercial graphic design, motion, and digital product craft.",
     "location": "Surabaya, Indonesia",
     "email": "kendhikinata24@gmail.com",
     "phone": "+62 858 5751 1756",
     "whatsappUrl": "https://wa.me/6285857511756?text=Hi%20Kinata,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!",
     "status": "Available for Q2-Q3 Commissions & Remote Roles",
-    "avatar": "/images/avatar.jpg",
+    "avatar": "/images/avatar_kinata.jpg",
     "socials": [
       {
         "name": "ArtStation",
@@ -43,6 +43,13 @@
       }
     ]
   },
+  "hero": {
+    "videoSrc": "/videos/showreel.mp4",
+    "poster": "/images/projects/archviz_interior.jpg",
+    "callsign": "SURABAYA, ID · 3D ANIMATION & CGI GENERALIST · MULTIMEDIA DESIGN",
+    "tagline": "Crafting high-fidelity 3D environments, hard-surface assets, and architectural visualizations, paired with commercial graphic design, motion, and digital product craft.",
+    "tickerText": "SURABAYA, ID · 3D ANIMATION & CGI GENERALIST · MULTIMEDIA DESIGN · GRAPHIC DESIGN & VIDEO EDITING · BLENDER & MAYA"
+  },
   "about": [
     "I'm an animation and 3D computer graphics practitioner based in Surabaya, Indonesia, holding a background from SMKN 2 Surabaya (Jurusan Animasi). Since 2020, I have immersed myself in the art of 3D modeling, hard-surface precision, architectural rendering, and digital world-building.",
     "Over the past few years, I have executed more than 10 freelance 3D commissions for international clients, delivering game-ready props, stylized fantasy dioramas, and photorealistic architectural visualizations (Archviz) using Blender, Autodesk Maya, and Substance 3D Painter.",
@@ -54,21 +61,53 @@
       "role": "Freelance 3D Artist — Environment & Hard-Surface Specialist",
       "company": "Independent / Global Remote",
       "description": "Completed over 10 international 3D modeling and visualization projects. Created game-ready low-poly and stylized 3D assets, modular environment sets, and architectural renderings. Managed the end-to-end pipeline from conceptual geometry and high-to-low poly baking to UV unwrap, PBR texturing, and photorealistic lighting.",
-      "tags": ["Blender", "Substance 3D", "Maya", "PBR Texturing", "Archviz", "Hard-Surface"]
+      "tags": [
+        "Blender",
+        "Substance 3D",
+        "Maya",
+        "PBR Texturing",
+        "Archviz",
+        "Hard-Surface"
+      ],
+      "previewImages": [
+        "/images/projects/hardsurface_mech.jpg",
+        "/images/projects/archviz_interior.jpg",
+        "/images/projects/stylized_shrine.jpg"
+      ]
     },
     {
       "period": "MAR 2024 — DEC 2024",
-      "role": "Digital Marketing & Videographer Intern",
+      "role": "Multimedia Designer — Graphic Design & Video Editing",
       "company": "PT Wong Bejo Joyo",
-      "description": "Produced and directed 30+ high-production real estate promotional videos for Instagram Reels and TikTok. Spearheaded weekly content strategies, hashtag research, and analytics optimization, achieving a 45% lift in social engagement rate. Collaborated with marketing teams on paid Meta Ads campaigns.",
-      "tags": ["Adobe Premiere Pro", "Photoshop", "CapCut Pro", "Meta Business Suite", "Reels Production", "Creative Direction"]
+      "description": "Produced and edited 30+ high-production real estate video reels and commercial marketing campaigns for Instagram and TikTok. Spearheaded weekly creative direction, visual pacing, sound design, and graphic promotional templates.",
+      "tags": [
+        "Premiere Pro",
+        "Photoshop",
+        "Video Editing",
+        "Graphic Design",
+        "Meta Ads",
+        "Reels Production"
+      ],
+      "previewImages": [
+        "/images/projects/marketing_reels.jpg"
+      ]
     },
     {
       "period": "2020 — PRESENT",
       "role": "Active Contributor & Community Member",
       "company": "Blender Community & Hidden Dev",
       "description": "Regular participant in global 3D modeling challenges, topology reviews, and asset critiques within the Blender community. Active contributor in the Hidden Dev community, collaborating on web UI/UX projects, automation tools, and front-end code experiments.",
-      "tags": ["Blender Discord", "Hidden Dev", "Web Dev", "UI/UX", "3D Peer Critique"]
+      "tags": [
+        "Blender Discord",
+        "Hidden Dev",
+        "Web Dev",
+        "UI/UX",
+        "3D Peer Critique"
+      ],
+      "previewImages": [
+        "/images/projects/game_ui_kit.jpg",
+        "/images/projects/stylized_shrine.jpg"
+      ]
     }
   ],
   "awards": [
@@ -76,13 +115,19 @@
       "title": "Juara 1 Lomba 3D Modeling",
       "issuer": "Event Internal Jurusan Animasi SMKN 2 Surabaya",
       "year": "2023",
-      "detail": "Awarded 1st place across the entire animation cohort for hard-surface asset modeling and creative lighting."
+      "detail": "Awarded 1st place across the entire animation cohort for hard-surface asset modeling and creative lighting.",
+      "previewImages": [
+        "/images/projects/hardsurface_mech.jpg"
+      ]
     },
     {
-      "title": "Final Graduation Film: 3D Animated Short",
+      "title": "\"Garisan Realitas\" — 3D Animated Short Film (Proyek Akhir UKK 2025)",
       "issuer": "SMKN 2 Surabaya Final Production",
       "year": "2025",
-      "detail": "Served as lead 3D modeler and compositor for the final animated short film using Blender and Premiere Pro."
+      "detail": "Menangani keseluruhan pipeline produksi animasi 3D: modeling, rigging, keyframe animation, lighting, rendering di Blender, hingga sound design dan editing di Premiere Pro.",
+      "previewImages": [
+        "/images/projects/stylized_shrine.jpg"
+      ]
     },
     {
       "title": "Cambridge CIE Primary International Program",
@@ -93,74 +138,158 @@
   ],
   "projects": [
     {
-      "id": "archviz-interior",
-      "title": "Neo-Archviz: Brutalist Sanctuary",
-      "category": "3d-cgi",
-      "categoryLabel": "3D & Archviz",
-      "year": "2025",
-      "image": "/images/projects/archviz_interior.jpg",
-      "summary": "Photorealistic architectural visualization of a brutalist luxury residence with panoramic forest vistas, custom PBR concrete shaders, and cinematic morning sunbeams.",
-      "description": "A comprehensive study in high-end architectural rendering and mood crafting. Featuring custom procedural board-formed concrete textures, accurate IES interior lighting, mid-century Scandinavian furniture modeling, and Cycles volumetric ray-tracing.",
-      "tools": ["Blender 4.3", "Cycles", "Substance Painter", "Photoshop"],
-      "link": "https://artstation.com",
-      "featured": true,
-      "stats": "Photoreal 4K Render · PBR Workflow"
-    },
-    {
-      "id": "hardsurface-mech",
-      "title": "Aethel-4 Industrial Combat Drone",
-      "category": "3d-cgi",
-      "categoryLabel": "Hard-Surface 3D",
-      "year": "2024",
-      "image": "/images/projects/hardsurface_mech.jpg",
-      "summary": "High-poly tactical UGV tracked combat drone with detailed mechanical assemblies, weathered decals, and high-to-low poly baked normal maps.",
-      "description": "Modeled using non-destructive subdivision workflows in Blender and Autodesk Maya. Textured inside Substance 3D Painter with multi-layered edge scratches, hydraulic fluid stains, and industrial warning stencils. Rendered in studio lighting.",
-      "tools": ["Blender", "Substance 3D", "Maya", "PBR Shading"],
-      "link": "https://artstation.com",
-      "featured": true,
-      "stats": "Hard-Surface Modeling · Weathered PBR"
-    },
-    {
-      "id": "stylized-shrine",
-      "title": "Moonlit Torii Shrine Island",
-      "category": "3d-cgi",
-      "categoryLabel": "Stylized 3D Art",
-      "year": "2024",
-      "image": "/images/projects/stylized_shrine.jpg",
-      "summary": "Enchanted floating Japanese Torii island environment with glowing sakura blossom canopy, stylized waterfalls, and hand-painted lighting ambiance.",
-      "description": "Award-winning stylized diorama designed for real-time game engines. Includes custom stylized leaf particle clusters, emissive lantern shaders, stone stairs, and whimsical celestial clouds inspired by Japanese anime aesthetics.",
-      "tools": ["Blender", "ZBrush", "Photoshop", "Stylized Shaders"],
-      "link": "https://artstation.com",
-      "featured": true,
-      "stats": "Stylized 3D · Hand-Crafted Shaders"
-    },
-    {
-      "id": "marketing-reels",
-      "title": "Aurora Residences: Social Campaign",
-      "category": "graphic-motion",
-      "categoryLabel": "Graphic & Motion",
-      "year": "2024",
+      "id": "wong-bejo-joyo-campaign",
+      "title": "PT Wong Bejo Joyo — Commercial Social Media & Video Campaign",
+      "category": "commercial-video",
+      "categoryLabel": "Commercial & Video",
+      "role": "Digital Marketing, Graphic Designer & Videographer Intern (2024–2025)",
+      "year": "2024 — 2025",
       "image": "/images/projects/marketing_reels.jpg",
-      "summary": "Full visual identity and 30+ short-form promotional reels campaign for luxury property developments, driving a 45% surge in engagement.",
-      "description": "Crafted end-to-end visual marketing collateral including isometric social templates, typography layouts, video editing with rhythm-matched motion graphics, and Meta ad campaign assets for PT Wong Bejo Joyo.",
-      "tools": ["Premiere Pro", "Photoshop", "CapCut Pro", "Meta Business"],
+      "summary": "Memproduksi dan menyunting 30+ video promosi properti (drone footage, color grading, motion text) serta desain visual feed/story untuk Instagram Reels & TikTok.",
+      "description": "Memproduksi dan menyunting lebih dari 30 video promosi properti (termasuk pengolahan drone footage, color grading, dan motion text) serta desain visual feed/story untuk Instagram Reels dan TikTok. Kampanye visual dan penjadwalan konten ini berhasil meningkatkan engagement rate akun hingga 45% dan pertumbuhan followers sebesar 20%, sekaligus mendukung materi iklan berbayar pada Facebook Ads dan Instagram Ads.",
+      "tools": [
+        "Adobe Photoshop",
+        "Adobe Premiere Pro",
+        "CapCut Pro",
+        "Canva",
+        "Meta Business Suite"
+      ],
       "link": "https://instagram.com",
       "featured": true,
-      "stats": "30+ Videos · 45% Engagement Lift"
+      "stats": "30+ Property Videos · +45% Engagement · +20% Followers"
     },
     {
-      "id": "game-ui-kit",
-      "title": "Iso-UI: Sci-Fi RPG Interface System",
-      "category": "ui-ux",
-      "categoryLabel": "Game UI / UX",
+      "id": "kopi-satu-product-animation",
+      "title": "Kopi Satu — 3D Product Animation & Brand Visual Identity",
+      "category": "commercial-video",
+      "categoryLabel": "3D Product Animation",
+      "role": "3D Product Animator & Brand Designer (Concept Case Study)",
       "year": "2025",
+      "image": "/images/projects/archviz_interior.jpg",
+      "summary": "Proyek eksplorasi komersial terpadu: pemodelan kemasan produk 3D, static product rendering, dan 3D product animation untuk iklan digital dengan identitas visual 2D.",
+      "description": "Proyek eksplorasi komersial terpadu yang menggabungkan pemodelan kemasan produk 3D, static product rendering, dan 3D product animation untuk iklan digital. Dilengkapi dengan perancangan identitas visual 2D, desain kemasan, serta motion graphics promosi untuk kebutuhan media sosial.",
+      "tools": [
+        "Blender",
+        "Adobe Photoshop",
+        "After Effects",
+        "Premiere Pro"
+      ],
+      "link": "https://artstation.com",
+      "featured": true,
+      "stats": "3D Product Modeling · Motion Commercial · Packaging Design · Photoreal"
+    },
+    {
+      "id": "aruna-regency-archviz",
+      "title": "Aruna Regency — 3D Architectural Visualization & Marketing Kit",
+      "category": "commercial-video",
+      "categoryLabel": "3D Archviz & Marketing Kit",
+      "role": "3D Archviz Artist & Multimedia Designer (Concept Case Study)",
+      "year": "2024",
+      "image": "/images/projects/archviz_interior.jpg",
+      "summary": "Pengembangan materi pemasaran properti end-to-end: 3D archviz (static render & walkthrough), desain floorplan informatif, brand identity, dan motion graphics promosi.",
+      "description": "Pengembangan materi pemasaran properti secara menyeluruh (end-to-end), mencakup 3D architectural visualization (static render dan animasi walkthrough bangunan), desain floorplan yang informatif, perancangan identitas brand perumahan, serta motion graphics untuk materi promosi digital.",
+      "tools": [
+        "Blender",
+        "Substance Painter",
+        "Adobe Photoshop",
+        "Premiere Pro"
+      ],
+      "link": "https://artstation.com",
+      "featured": true,
+      "stats": "End-to-End Archviz · Walkthrough Animation · Brand Identity"
+    },
+    {
+      "id": "garisan-realitas-short-film",
+      "title": "\"Garisan Realitas\" — 3D Animated Short Film (UKK 2025)",
+      "category": "3d-film-environment",
+      "categoryLabel": "3D Animated Short",
+      "role": "3D Animator, Modeler & Video Editor — SMKN 2 Surabaya",
+      "year": "2025",
+      "image": "/images/projects/stylized_shrine.jpg",
+      "summary": "Film animasi pendek 3D Proyek Akhir UKK Animasi SMKN 2 Surabaya. Menangani pipeline modeling, rigging, keyframe animation, lighting, Cycles rendering, dan compositing.",
+      "description": "Film animasi pendek 3D yang diproduksi sebagai Proyek Akhir Uji Kompetensi Keahlian (UKK) Jurusan Animasi SMKN 2 Surabaya. Menangani keseluruhan pipeline produksi mulai dari modeling, rigging, keyframe animation, lighting, rendering di Blender, hingga proses compositing, tata suara, dan final editing di Adobe Premiere Pro.",
+      "tools": [
+        "Blender",
+        "Adobe Premiere Pro"
+      ],
+      "link": "https://youtube.com",
+      "featured": true,
+      "stats": "Lead 3D Production · Full Pipeline UKK 2025"
+    },
+    {
+      "id": "cyberpunk-snowy-environments",
+      "title": "Cyberpunk Neo City & Snowy Canyon — 3D Environment Design",
+      "category": "3d-film-environment",
+      "categoryLabel": "3D Environment Art",
+      "role": "3D Environment Artist",
+      "year": "2024",
+      "image": "/images/projects/hardsurface_mech.jpg",
+      "summary": "Dua karya eksplorasi 3D environment atmosferik: Snowy Canyon (pencahayaan natural dan skala ruang) dan Cyberpunk Neo City (neon, hard-surface, sinematik).",
+      "description": "Dua karya eksplorasi 3D environment dengan pendekatan atmosfer yang kontras: lanskap alam bersalju (Snowy Canyon) yang berfokus pada pencahayaan natural dan skala ruang, serta lanskap kota futuristik (Cyberpunk Neo City) yang menonjolkan permainan lampu neon, tekstur hard-surface, dan mood sinematik.",
+      "tools": [
+        "Blender",
+        "Substance Painter",
+        "Adobe Photoshop"
+      ],
+      "link": "https://artstation.com",
+      "featured": true,
+      "stats": "Dual Cinematic Environments · Atmospheric Lighting"
+    },
+    {
+      "id": "stylized-skateboard-pack",
+      "title": "Stylized Hand-Painted Skateboard Pack (11 Game-Ready Assets)",
+      "category": "game-assets-animation",
+      "categoryLabel": "Game-Ready 3D Assets",
+      "role": "Freelance 3D Prop Artist",
+      "year": "2024",
       "image": "/images/projects/game_ui_kit.jpg",
-      "summary": "Comprehensive dark sci-fi video game interface design system with holographic tactical HUD, inventory grid, and weapon loadout modal.",
-      "description": "Built in Figma with an atomic component system. Designed for both desktop and touch controls, featuring cyan and amber neon status indicators, radar minimap, weapon upgrade modals, and responsive layout scaling.",
-      "tools": ["Figma", "Photoshop", "Design System", "CSS"],
+      "summary": "Pembuatan 11 aset 3D skateboard bergaya low-poly stylized dengan tekstur hand-painted untuk game engine Roblox, dengan topologi optimal dan UV mapping efisien.",
+      "description": "Pembuatan 11 aset 3D skateboard bergaya low-poly stylized dengan tekstur hand-painted untuk kebutuhan game engine (Roblox). Dirancang dengan topologi yang teroptimasi dan UV mapping yang efisien tanpa mengorbankan detail estetika visual.",
+      "tools": [
+        "Blender",
+        "Substance Painter",
+        "Adobe Photoshop"
+      ],
+      "link": "https://artstation.com",
+      "featured": true,
+      "stats": "11 Game-Ready Assets · Hand-Painted PBR · Optimized Topology"
+    },
+    {
+      "id": "elementals-combat-animation",
+      "title": "\"Elementals\" — Stylized 3D Combat & Action Animation",
+      "category": "game-assets-animation",
+      "categoryLabel": "3D Combat Animation",
+      "role": "3D Character Animator",
+      "year": "2024",
+      "image": "/images/projects/stylized_shrine.jpg",
+      "summary": "Animasi pendek aksi pertarungan (combat sequence) berfokus pada dinamika gerak karakter, timing aksi responsif, serta koreografi kamera ekspresif.",
+      "description": "Animasi pendek pertarungan (action/combat sequence) yang berfokus pada dinamika gerak karakter, timing aksi yang responsif, serta koreografi kamera yang ekspresif.",
+      "tools": [
+        "Blender",
+        "Roblox Studio"
+      ],
+      "link": "https://youtube.com",
+      "featured": true,
+      "stats": "Combat Sequence · Dynamic Camera Choreography · Keyframe Timing"
+    },
+    {
+      "id": "rea3-studio-digital-projects",
+      "title": "ReA3 Studio & Digital Web Projects",
+      "category": "web-creative-tech",
+      "categoryLabel": "Web Design & Systems",
+      "role": "Founder, Web Designer & Developer (2024–2026)",
+      "year": "2024 — 2026",
+      "image": "/images/projects/game_ui_kit.jpg",
+      "summary": "Perancangan UI/UX dan pengembangan web portofolio kreatif ReA3 Studio, platform komunitas interaktif, dan sistem otomatisasi (RVC Regiment Web & Veritas System).",
+      "description": "Merancang antarmuka visual (UI/UX) dan mengembangkan situs web portofolio kreatif ReA3 Studio beserta beberapa proyek situs komunitas interaktif dan sistem otomatisasi (RVC Regiment Web & Veritas System). Menunjukkan kemampuan adaptasi cepat terhadap berbagai software digital dan manajemen proyek kreatif.",
+      "tools": [
+        "Figma",
+        "HTML/CSS/JavaScript",
+        "UI/UX Design"
+      ],
       "link": "https://github.com",
       "featured": true,
-      "stats": "Complete UI Kit · 60+ Components"
+      "stats": "Founder & Dev · Interactive Community Sites · Automation Systems"
     }
   ],
   "skills": {

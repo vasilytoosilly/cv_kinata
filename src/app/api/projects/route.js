@@ -1,4 +1,4 @@
-import { NextResponse } from "next/navigation";
+import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
@@ -27,11 +27,18 @@ export async function POST(request) {
     const body = await request.json();
     const data = getPortfolioData();
 
+    const categoryMap = {
+      "commercial-video": "Commercial & Video",
+      "3d-film-environment": "3D Film & Environment",
+      "game-assets-animation": "Game Assets & Animation",
+      "web-creative-tech": "Web & Creative Tech",
+    };
+
     const newProject = {
       id: body.id || `proj-${Date.now()}`,
       title: body.title,
-      category: body.category || "3d-cgi",
-      categoryLabel: body.categoryLabel || (body.category === "3d-cgi" ? "3D & CGI" : body.category === "graphic-motion" ? "Graphic & Motion" : "UI / UX"),
+      category: body.category || "commercial-video",
+      categoryLabel: body.categoryLabel || categoryMap[body.category] || "Project",
       year: body.year || new Date().getFullYear().toString(),
       image: body.image || "/images/projects/archviz_interior.jpg",
       summary: body.summary || "",
@@ -46,6 +53,45 @@ export async function POST(request) {
     savePortfolioData(data);
 
     return NextResponse.json({ success: true, project: newProject });
+  } catch (err) {
+    return NextResponse.json({ success: false, message: err.message }, { status: 500 });
+  }
+}
+
+export async function PUT(request) {
+  try {
+    const body = await request.json();
+    if (!body.id) {
+      return NextResponse.json({ success: false, message: "Missing project id" }, { status: 400 });
+    }
+
+    const data = getPortfolioData();
+    const index = data.projects.findIndex((p) => p.id === body.id);
+    if (index === -1) {
+      return NextResponse.json({ success: false, message: "Project not found" }, { status: 404 });
+    }
+
+    const categoryMap = {
+      "commercial-video": "Commercial & Video",
+      "3d-film-environment": "3D Film & Environment",
+      "game-assets-animation": "Game Assets & Animation",
+      "web-creative-tech": "Web & Creative Tech",
+    };
+
+    const existing = data.projects[index];
+    const updated = {
+      ...existing,
+      ...body,
+      categoryLabel: body.categoryLabel || categoryMap[body.category || existing.category] || existing.categoryLabel,
+      tools: Array.isArray(body.tools)
+        ? body.tools
+        : (body.tools ? body.tools.split(",").map((t) => t.trim()).filter(Boolean) : existing.tools),
+    };
+
+    data.projects[index] = updated;
+    savePortfolioData(data);
+
+    return NextResponse.json({ success: true, project: updated });
   } catch (err) {
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }

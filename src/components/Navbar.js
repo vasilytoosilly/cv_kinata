@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-export default function Navbar({ activityFeed = [] }) {
+export default function Navbar({ activityFeed = [], tickerText = "" }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(activityFeed.length || 3);
   const dropdownRef = useRef(null);
@@ -28,45 +28,58 @@ export default function Navbar({ activityFeed = [] }) {
     }
   };
 
+  const defaultTicker = "SURABAYA, ID · 3D ANIMATION · HARD-SURFACE CGI · ARCHVIZ · REAL ESTATE REELS · GAME ASSETS · BLENDER & MAYA";
+  const activeTicker = tickerText || defaultTicker;
+
   return (
-    <header className="navbar-wrapper">
-      <nav className="floating-navbar" aria-label="Primary navigation">
-        <Link href="/" className="profile-identity" aria-label="Kinata Portfolio Home">
-          <div className="profile-avatar-wrap">
-            <Image
-              src="/images/avatar.jpg"
-              alt="Kinata Avatar"
-              width={30}
-              height={30}
-              className="profile-avatar-img"
-              priority
-            />
-          </div>
-          <span className="profile-handle">kinata</span>
+    <header className="top-ribbon-bar">
+      <div className="top-ribbon-inner">
+        {/* Left Brand Anchor */}
+        <Link href="/" className="ribbon-brand" aria-label="Kinata Portfolio Home">
+          <Image
+            src="/favicon.png"
+            alt="Kinata Logo"
+            width={24}
+            height={24}
+            className="ribbon-brand-logo"
+            priority
+          />
+          <span className="ribbon-handle">Creative Portfolio</span>
         </Link>
 
-        <div className="navbar-right">
-          <Link
-            href="/"
-            className={`nav-link ${pathname === "/" ? "active" : ""}`}
-            aria-current={pathname === "/" ? "page" : undefined}
-          >
-            Home
+        {/* Center Navigation Links */}
+        <nav className="ribbon-nav-links" aria-label="Primary navigation">
+          <Link href={pathname === "/" ? "#about" : "/#about"} className="ribbon-link">
+            ABOUT
           </Link>
-          <Link
-            href="/resume"
-            className={`nav-link ${pathname === "/resume" ? "active" : ""}`}
-            aria-current={pathname === "/resume" ? "page" : undefined}
-          >
-            Resume
+          <Link href={pathname === "/" ? "#projects" : "/#projects"} className="ribbon-link">
+            PROJECTS
           </Link>
-          <Link
-            href="/archive"
-            className={`nav-link ${pathname === "/archive" ? "active" : ""}`}
-            aria-current={pathname === "/archive" ? "page" : undefined}
-          >
-            Archive
+          <Link href={pathname === "/" ? "#experience" : "/#experience"} className="ribbon-link">
+            EXPERIENCE
           </Link>
+          <Link href={pathname === "/" ? "#skills" : "/#skills"} className="ribbon-link">
+            SKILLS
+          </Link>
+          <Link href="/archive" className={`ribbon-link ${pathname === "/archive" ? "active" : ""}`}>
+            ARCHIVE
+          </Link>
+          <Link href="/resume" className={`ribbon-link ${pathname === "/resume" ? "active" : ""}`}>
+            RÉSUMÉ
+          </Link>
+        </nav>
+
+        {/* Right Action Buttons */}
+        <div className="ribbon-actions">
+          <a
+            href="https://wa.me/6285857511756?text=Hi%20Kinata,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ribbon-cta-btn"
+          >
+            <span>Let&apos;s Talk</span>
+            <span className="cta-arrow">→</span>
+          </a>
 
           {/* Activity Updates Bell */}
           <div className="updates-wrapper" ref={dropdownRef}>
@@ -97,8 +110,8 @@ export default function Navbar({ activityFeed = [] }) {
             {dropdownOpen && (
               <div className="updates-dropdown">
                 <div className="dropdown-header">
-                  <h3>Activity Feed</h3>
-                  <span>RECENT LOGS</span>
+                  <h3>Updates</h3>
+                  <span>Recent</span>
                 </div>
                 <div className="dropdown-items">
                   {activityFeed.map((item) => (
@@ -116,7 +129,18 @@ export default function Navbar({ activityFeed = [] }) {
             )}
           </div>
         </div>
-      </nav>
+      </div>
+
+      {/* Scrolling Sub-Ticker Strip */}
+      <div className="ribbon-ticker-subbar" aria-hidden="true">
+        <div className="ticker-track">
+          <span>{activeTicker}</span>
+          <span className="ticker-divider">·</span>
+          <span>{activeTicker}</span>
+          <span className="ticker-divider">·</span>
+          <span>{activeTicker}</span>
+        </div>
+      </div>
     </header>
   );
 }

@@ -18,31 +18,20 @@ export default function ArchivePage() {
     ...projects,
     {
       id: "arc-drone-sculpt",
-      title: "Hard-Surface Speed Sculpt: Tactical Recon Drone",
-      category: "3d-cgi",
-      categoryLabel: "3D & CGI Art",
+      title: "Tactical Drone Hard-Surface Speed Modeling",
+      category: "3d-film-environment",
+      categoryLabel: "3D Hard-Surface",
       year: "2024",
       image: "/images/projects/hardsurface_mech.jpg",
-      summary: "Speed-modeling exercise exploring bevel weights and boolean cutters in Blender.",
-      tools: ["Blender", "HardOps", "Cycles"],
+      summary: "Eksplorasi teknik boolean cutters, bevel weights, dan normal baking di Blender.",
+      tools: ["Blender", "HardOps", "Substance Painter"],
       link: "https://artstation.com"
     },
     {
-      id: "arc-anim-short",
-      title: "SMK Final Project: 'Echoes of Surabaya' 3D Animation",
-      category: "3d-cgi",
-      categoryLabel: "3D Animation",
-      year: "2025",
-      image: "/images/projects/stylized_shrine.jpg",
-      summary: "Collaborative animated short film exploring heritage architecture in stylized 3D.",
-      tools: ["Blender", "Maya", "Premiere Pro", "After Effects"],
-      link: "https://youtube.com"
-    },
-    {
       id: "arc-cafe-branding",
-      title: "Panjoel Cafe: Menu Redesign & Social Identity",
-      category: "graphic-motion",
-      categoryLabel: "Graphic Design",
+      title: "Panjoel Cafe — Visual Identity & Social Design",
+      category: "commercial-video",
+      categoryLabel: "Commercial & Branding",
       year: "2025",
       image: "/images/projects/marketing_reels.jpg",
       summary: "Modern typography-driven physical menu system and promotional Instagram templates.",
@@ -51,12 +40,12 @@ export default function ArchivePage() {
     },
     {
       id: "arc-discord-bot",
-      title: "Blender Asset Indexer & Discord Automation Bot",
-      category: "ui-ux",
-      categoryLabel: "Scripting & Tool",
-      year: "2023",
+      title: "Veritas Automation & Community Tools",
+      category: "web-creative-tech",
+      categoryLabel: "Automation & Web",
+      year: "2024",
       image: "/images/projects/game_ui_kit.jpg",
-      summary: "Lightweight Node.js utility built for the Hidden Dev community to parse 3D blend files.",
+      summary: "Utility system dan otomatisasi workflow untuk komunitas kreatif ReA3 Studio.",
       tools: ["JavaScript", "Node.js", "Discord API"],
       link: "https://github.com"
     }
@@ -81,11 +70,11 @@ export default function ArchivePage() {
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          <span>Back to Portfolio</span>
+          <span>BACK TO PORTFOLIO</span>
         </Link>
 
         <div>
-          <div className="section-label">CHRONOLOGICAL DATABASE</div>
+          <div className="section-label">CHRONOLOGICAL ARCHIVE</div>
           <h1 className="section-heading" style={{ marginBottom: "8px" }}>
             All Works & Archives
           </h1>
@@ -98,10 +87,11 @@ export default function ArchivePage() {
         <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", margin: "32px 0 20px 0" }}>
           <div className="project-filter-bar" style={{ margin: 0 }}>
             {[
-              { id: "all", label: "All Works" },
-              { id: "3d-cgi", label: "3D & CGI" },
-              { id: "graphic-motion", label: "Graphic & Motion" },
-              { id: "ui-ux", label: "UI / UX & Code" },
+              { id: "all", label: "ALL WORKS" },
+              { id: "commercial-video", label: "COMMERCIAL & VIDEO" },
+              { id: "3d-film-environment", label: "3D FILM & ENVIRONMENT" },
+              { id: "game-assets-animation", label: "GAME ASSETS & ANIMATION" },
+              { id: "web-creative-tech", label: "WEB & CREATIVE TECH" },
             ].map((cat) => (
               <button
                 key={cat.id}

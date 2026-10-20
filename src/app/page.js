@@ -7,8 +7,10 @@ import portfolioData from "@/../data/portfolio.json";
 import Navbar from "@/components/Navbar";
 import StatusBadge from "@/components/StatusBadge";
 import ProjectModal from "@/components/ProjectModal";
+import InteractiveExperienceCard from "@/components/InteractiveExperienceCard";
+import InteractiveAwardCard from "@/components/InteractiveAwardCard";
 
-/* Inline SVG icons — clean, standard vector marks */
+/* Clean vector icons for professional socials */
 const SocialIcon = ({ name }) => {
   const icons = {
     ArtStation: (
@@ -48,23 +50,30 @@ const SocialIcon = ({ name }) => {
 };
 
 export default function Home() {
-  const { profile, about, experience, awards, projects, skills, activityFeed } = portfolioData;
+  const { profile, hero = {}, about, experience, awards, projects, skills, activityFeed } = portfolioData;
 
   const [activeSection, setActiveSection] = useState("about");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const sections = ["about", "experience", "projects", "skills"];
-      const scrollPosition = window.scrollY + 220;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const sections = ["about", "experience", "projects", "skills"];
+          const scrollPosition = window.scrollY + 240;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
-        }
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const el = document.getElementById(sections[i]);
+            if (el && el.offsetTop <= scrollPosition) {
+              setActiveSection(sections[i]);
+              break;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
@@ -76,23 +85,74 @@ export default function Home() {
     ? projects
     : projects.filter((p) => p.category === selectedCategory);
 
+  const heroVideo = hero.videoSrc || "/videos/showreel.mp4";
+  const heroPoster = hero.poster || "/images/projects/archviz_interior.jpg";
+
   return (
     <>
-      <Navbar activityFeed={activityFeed} />
+      <Navbar activityFeed={activityFeed} tickerText={hero.tickerText} />
 
+      {/* ================= RIOT-INSPIRED FULL-BLEED VIDEO HERO STAGE ================= */}
+      <section className="hero-riot-stage" aria-label="Cinematic Showcase Hero">
+        <div className="hero-riot-video-wrap">
+          <video
+            key={heroVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster={heroPoster}
+            className="hero-riot-video"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+          <div className="hero-riot-overlay" />
+        </div>
+
+        <div className="hero-riot-content">
+          <div className="hero-subtitle-tag">
+            <span>{hero.callsign || "Surabaya, ID — 3D Animation & CGI"}</span>
+          </div>
+
+          <h1 className="hero-riot-headline">{profile.handle}</h1>
+          <div className="hero-riot-subname">{profile.fullName}</div>
+          <p className="hero-riot-tagline">{hero.tagline || profile.tagline}</p>
+
+          <div className="hero-riot-actions">
+            <a href="#about" className="btn-sweep-primary">
+              <span>View Work</span>
+              <span className="btn-arrow">↓</span>
+            </a>
+            <Link href="/resume" className="btn-sweep-secondary">
+              <span>Résumé</span>
+              <span className="btn-arrow">→</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="hero-riot-scroll-indicator" aria-hidden="true">
+          <span className="scroll-arrow">↓</span>
+          <span>Scroll to Explore</span>
+        </div>
+      </section>
+
+      {/* ================= MAIN TWO-COLUMN CONTENT LAYOUT ================= */}
       <main className="layout-shell">
         <div className="two-column-layout">
 
-          {/* ================= STICKY LEFT PANEL (Pradipta layout) ================= */}
+          {/* ================= STICKY LEFT COMPANION RAIL ================= */}
           <aside className="left-panel">
-            <div className="hero-identity">
-              <h1 className="main-handle">{profile.handle}</h1>
-              <div className="full-legal-name">{profile.fullName}</div>
-              <div className="role-badge-text">{profile.role}</div>
-              <p className="hero-tagline">{profile.tagline}</p>
+            <div className="left-rail-header">
+              <div className="rail-anchor-profile">
+                <span className="rail-anchor-name">Kinata</span>
+                <span className="rail-anchor-divider">/</span>
+                <span className="rail-anchor-role">3D & CGI Generalist · Multimedia Designer</span>
+              </div>
+              <div className="rail-location-tag">Surabaya, Indonesia</div>
 
-              {/* Clean Section Navigation with Indicator Line */}
-              <nav className="section-nav" aria-label="Section navigation">
+              {/* Table of Contents Navigation with Indicator Line */}
+              <nav className="rail-toc-nav" aria-label="Table of contents navigation">
                 {[
                   { id: "about", label: "ABOUT" },
                   { id: "experience", label: "EXPERIENCE" },
@@ -102,10 +162,10 @@ export default function Home() {
                   <a
                     key={s.id}
                     href={`#${s.id}`}
-                    className={`nav-anchor ${activeSection === s.id ? "active" : ""}`}
+                    className={`rail-toc-item ${activeSection === s.id ? "active" : ""}`}
                   >
-                    <span className="nav-anchor-indicator" />
-                    <span>{s.label}</span>
+                    <span className="rail-toc-line" />
+                    <span className="rail-toc-label">{s.label}</span>
                   </a>
                 ))}
               </nav>
@@ -113,17 +173,18 @@ export default function Home() {
 
             <div className="left-footer">
               <div className="quick-action-row">
-                <Link href="/resume" className="btn-primary-action">
-                  <span>View Résumé</span>
-                  <span>↗</span>
+                <Link href="/resume" className="btn-sweep-primary">
+                  <span>Résumé</span>
+                  <span className="btn-arrow">→</span>
                 </Link>
                 <a
                   href={profile.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary-action"
+                  className="btn-sweep-secondary"
                 >
-                  <span>Chat Direct</span>
+                  <span>Direct Chat</span>
+                  <span className="btn-arrow">→</span>
                 </a>
               </div>
 
@@ -148,9 +209,12 @@ export default function Home() {
           {/* ================= SCROLLING RIGHT PANEL ================= */}
           <section className="right-panel">
 
-            {/* ABOUT */}
+            {/* 01 // ABOUT */}
             <section id="about" className="content-section">
-              <h2 className="section-heading">Identity & Story</h2>
+              <div className="section-label">
+                <span>01 — About</span>
+              </div>
+              <h2 className="section-heading">About</h2>
 
               <div className="about-prose">
                 {about.map((p, i) => (
@@ -164,12 +228,12 @@ export default function Home() {
               {/* 3 Real Metric Highlights */}
               <div className="about-highlight-box">
                 <div className="stat-item">
-                  <div className="stat-number">10+</div>
+                  <div className="stat-number stat-riot">10+</div>
                   <div className="stat-label">Global 3D Commissions</div>
                   <div className="stat-sub">Client projects across gaming & archviz</div>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-number stat-gold">1st</div>
+                  <div className="stat-number stat-gold">1ST</div>
                   <div className="stat-label">3D Modeling Competition</div>
                   <div className="stat-sub">Jurusan Animasi SMKN 2 Surabaya</div>
                 </div>
@@ -181,67 +245,51 @@ export default function Home() {
               </div>
             </section>
 
-            {/* EXPERIENCE */}
+            {/* 02 // EXPERIENCE */}
             <section id="experience" className="content-section">
-              <h2 className="section-heading">Career & Milestones</h2>
+              <div className="section-label">
+                <span>02 — Experience</span>
+              </div>
+              <h2 className="section-heading">Experience & Honors</h2>
 
               <div className="experience-list">
                 {experience.map((exp, i) => (
-                  <article key={i} className="experience-card">
-                    <div className="card-meta-row">
-                      <span className="card-period">{exp.period}</span>
-                      <span className="card-company">{exp.company}</span>
-                    </div>
-                    <h3 className="card-role-title">{exp.role}</h3>
-                    <p className="card-description">{exp.description}</p>
-                    <div className="card-tags">
-                      {exp.tags.map((t, idx) => (
-                        <span key={idx} className="tag-chip">{t}</span>
-                      ))}
-                    </div>
-                  </article>
+                  <InteractiveExperienceCard key={i} item={exp} />
                 ))}
               </div>
 
-              <div style={{ marginTop: "32px" }}>
+              <div style={{ marginTop: "36px" }}>
                 <h3 className="sub-section-title">
-                  Honors & Education
+                  Competitions & Academic Honors
                 </h3>
                 <div className="awards-list">
                   {awards.map((awd, i) => (
-                    <div key={i} className="award-card">
-                      <div className="card-meta-row">
-                        <span className="award-year">{awd.year}</span>
-                        <span className="award-issuer">{awd.issuer}</span>
-                      </div>
-                      <div className="award-title">
-                        {awd.title}
-                      </div>
-                      <p className="award-detail">
-                        {awd.detail}
-                      </p>
-                    </div>
+                    <InteractiveAwardCard key={i} award={awd} />
                   ))}
                 </div>
               </div>
 
               <Link href="/resume" className="section-full-link">
                 <span>View Full Résumé</span>
-                <span>↗</span>
+                <span className="btn-arrow">→</span>
               </Link>
             </section>
 
-            {/* PROJECTS */}
+            {/* 03 // PROJECTS */}
             <section id="projects" className="content-section">
-              <h2 className="section-heading">Featured Work</h2>
+              <div className="section-label">
+                <span>03 — Projects</span>
+              </div>
+              <h2 className="section-heading">Projects</h2>
 
               {/* Category Filter Tabs */}
               <div className="project-filter-bar" role="tablist">
                 {[
-                  { id: "all", label: "All" },
-                  { id: "3d-cgi", label: "3D & CGI" },
-                  { id: "graphic-motion", label: "Graphic & Motion" },
-                  { id: "ui-ux", label: "UI / UX" },
+                  { id: "all", label: "ALL" },
+                  { id: "commercial-video", label: "COMMERCIAL & VIDEO" },
+                  { id: "3d-film-environment", label: "3D FILM & ENVIRONMENT" },
+                  { id: "game-assets-animation", label: "GAME ASSETS & ANIMATION" },
+                  { id: "web-creative-tech", label: "WEB & CREATIVE TECH" },
                 ].map((cat) => (
                   <button
                     key={cat.id}
@@ -289,8 +337,11 @@ export default function Home() {
                     <div className="project-body">
                       <div className="project-title-row">
                         <h3 className="project-title">{project.title}</h3>
-                        <span className="project-arrow">↗</span>
+                        <span className="project-arrow">→</span>
                       </div>
+                      {project.role && (
+                        <div className="project-role-tag">{project.role}</div>
+                      )}
                       <p className="project-summary">{project.summary}</p>
                       {project.stats && (
                         <div className="project-stats-row">
@@ -311,13 +362,16 @@ export default function Home() {
 
               <Link href="/archive" className="section-full-link">
                 <span>View Full Project Archive</span>
-                <span>↗</span>
+                <span className="btn-arrow">→</span>
               </Link>
             </section>
 
-            {/* SKILLS */}
+            {/* 04 // SKILLS */}
             <section id="skills" className="content-section">
-              <h2 className="section-heading">Technical Skills</h2>
+              <div className="section-label">
+                <span>04 — Skills</span>
+              </div>
+              <h2 className="section-heading">Skills</h2>
 
               <div className="skills-grid">
                 {Object.entries(skills).map(([catName, skillList], i) => (
@@ -338,10 +392,10 @@ export default function Home() {
             {/* FOOTER */}
             <footer className="site-footer">
               <div className="footer-left">
-                © 2026 {profile.fullName} · Surabaya, Indonesia
+                © 2026 {profile.fullName} · SURABAYA, ID
               </div>
               <Link href="/admin/login" className="footer-admin-link" title="Control Room Login">
-                Control Room ↗
+                Admin →
               </Link>
             </footer>
 
