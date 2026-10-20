@@ -1,22 +1,10 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-
-const dataFilePath = path.join(process.cwd(), "data", "portfolio.json");
-
-function getPortfolioData() {
-  const file = fs.readFileSync(dataFilePath, "utf8");
-  return JSON.parse(file);
-}
-
-function savePortfolioData(data) {
-  fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), "utf8");
-}
+import { getPortfolioData, savePortfolioData } from "@/lib/supabase";
 
 export async function GET() {
   try {
-    const data = getPortfolioData();
-    return NextResponse.json({ success: true, projects: data.projects });
+    const data = await getPortfolioData();
+    return NextResponse.json({ success: true, projects: data?.projects || [] });
   } catch (err) {
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }
@@ -25,7 +13,8 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const data = getPortfolioData();
+    const data = (await getPortfolioData()) || { projects: [] };
+    if (!data.projects) data.projects = [];
 
     const categoryMap = {
       "commercial-video": "Commercial & Video",
@@ -50,7 +39,7 @@ export async function POST(request) {
     };
 
     data.projects.unshift(newProject);
-    savePortfolioData(data);
+    await savePortfolioData(data);
 
     return NextResponse.json({ success: true, project: newProject });
   } catch (err) {
@@ -65,7 +54,9 @@ export async function PUT(request) {
       return NextResponse.json({ success: false, message: "Missing project id" }, { status: 400 });
     }
 
-    const data = getPortfolioData();
+    const data = (await getPortfolioData()) || { projects: [] };
+    if (!data.projects) data.projects = [];
+
     const index = data.projects.findIndex((p) => p.id === body.id);
     if (index === -1) {
       return NextResponse.json({ success: false, message: "Project not found" }, { status: 404 });
@@ -89,7 +80,7 @@ export async function PUT(request) {
     };
 
     data.projects[index] = updated;
-    savePortfolioData(data);
+    await savePortfolioData(data);
 
     return NextResponse.json({ success: true, project: updated });
   } catch (err) {
@@ -106,9 +97,11 @@ export async function DELETE(request) {
       return NextResponse.json({ success: false, message: "Missing id" }, { status: 400 });
     }
 
-    const data = getPortfolioData();
+    const data = (await getPortfolioData()) || { projects: [] };
+    if (!data.projects) data.projects = [];
+
     data.projects = data.projects.filter(p => p.id !== id);
-    savePortfolioData(data);
+    await savePortfolioData(data);
 
     return NextResponse.json({ success: true, message: "Project deleted" });
   } catch (err) {
