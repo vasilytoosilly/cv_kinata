@@ -44,3 +44,5 @@ next-env.d.ts
 # design references and logs
 .hallmark/
 screenshot_*.png
+
+.vercel
