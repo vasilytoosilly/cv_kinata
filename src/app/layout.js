@@ -27,7 +27,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://kinata.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://kinata.rea3.studio"),
   title: "Kinata — CGI Generalist & Digital Designer",
   description: "Portfolio of Achmad Kendhikinata Kuswirawanto — High-fidelity 3D environments, hard-surface assets, archviz, and digital product craft.",
   icons: {
