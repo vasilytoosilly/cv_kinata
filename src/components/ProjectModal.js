@@ -3,6 +3,19 @@
 import { useState, useEffect } from "react";
 import SafeImage from "@/components/SafeImage";
 
+const getShowcaseLabel = (link, category) => {
+  if (!link) return "SOURCE";
+  const url = link.toLowerCase();
+  if (url.includes("artstation")) return "ARTSTATION";
+  if (url.includes("instagram")) return "INSTAGRAM";
+  if (url.includes("youtube") || url.includes("youtu.be")) return "YOUTUBE";
+  if (url.includes("behance")) return "BEHANCE";
+  if (url.includes("github")) return "GITHUB";
+  if (category === "3d-cgi" || category === "3d-film-environment" || category === "game-assets-animation") return "ARTSTATION";
+  if (category === "commercial-video") return "INSTAGRAM";
+  return "SOURCE";
+};
+
 export default function ProjectModal({ project, onClose }) {
   const images = Array.isArray(project?.images) && project.images.length > 0
     ? project.images.filter(Boolean)
@@ -147,14 +160,14 @@ export default function ProjectModal({ project, onClose }) {
           )}
 
           {project.link && (
-            <div className="modal-cta-row">
+            <div style={{ marginTop: "12px" }}>
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary modal-action-btn"
+                className="btn-sweep-primary"
               >
-                <span>VISIT ASSET DESTINATION</span>
+                <span>VIEW SHOWCASE ON {getShowcaseLabel(project.link, project.category)}</span>
                 <span className="btn-arrow">↗</span>
               </a>
             </div>
