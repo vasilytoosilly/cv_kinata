@@ -10,6 +10,8 @@ export async function POST(request) {
       return NextResponse.json({ success: false, message: "No file provided" }, { status: 400 });
     }
 
+    const folderType = data.get("folder") || "projects";
+
     const isVideo = folderType === "videos" || /\.(mp4|webm|mov)$/i.test(file.name);
     const isPdf = folderType === "cv" || /\.pdf$/i.test(file.name);
 
