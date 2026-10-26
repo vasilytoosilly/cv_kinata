@@ -141,23 +141,25 @@ export default function ProjectModal({ project, onClose }) {
 
           <p className="modal-desc">{project.description || project.summary}</p>
 
-          {project.tools && project.tools.length > 0 && (
-            <div className="modal-tools-wrap">
-              <span className="modal-tools-label">Discipline & Toolchain</span>
-              <div className="modal-tools-list">
-                {project.tools.map((t, i) => (
-                  <span key={i} className="tool-badge">{t}</span>
-                ))}
-              </div>
+          {project.stats && (
+            <div className="modal-stats-box">
+              <span className="stat-highlight-tag">METRIC</span>
+              <span>{project.stats}</span>
             </div>
           )}
 
-          {project.stats && (
-            <div className="modal-highlight-box">
-              <span className="highlight-label">PROJECT HIGHLIGHT</span>
-              <span className="highlight-val">{project.stats}</span>
+          <div>
+            <div className="modal-section-label">
+              Pipeline & Tools
             </div>
-          )}
+            <div className="card-tags">
+              {project.tools?.map((tool, i) => (
+                <span key={i} className="tag-chip">
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
 
           {project.link && (
             <div style={{ marginTop: "12px" }}>
