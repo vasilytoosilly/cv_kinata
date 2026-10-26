@@ -1403,7 +1403,7 @@ img {
   background: rgba(5, 5, 5, 0.85);
   border: 1px solid var(--border-medium);
   backdrop-filter: blur(8px);
-  opacity: 0;
+  opacity: 0.9;
   transition: opacity var(--t-fast);
   pointer-events: none;
 }
