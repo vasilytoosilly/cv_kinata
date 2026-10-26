@@ -1,53 +1,9 @@
 {
-  "profile": {
-    "handle": "Kinata",
-    "fullName": "Achmad Kendhikinata Kuswirawanto",
-    "role": "3D Animation & CGI Generalist · Multimedia & Graphic Designer",
-    "tagline": "Crafting high-fidelity 3D environments, hard-surface assets, and architectural visualizations, paired with commercial graphic design, motion, and digital product craft.",
-    "location": "Surabaya, Indonesia",
-    "email": "kendhikinata24@gmail.com",
-    "phone": "+62 858 5751 1756",
-    "whatsappUrl": "https://wa.me/6285857511756?text=Hi%20Kinata,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!",
-    "status": "Available for Q2-Q3 Commissions & Remote Roles",
-    "avatar": "/images/avatar_kinata.jpg",
-    "socials": [
-      {
-        "name": "ArtStation",
-        "url": "https://artstation.com",
-        "icon": "artstation"
-      },
-      {
-        "name": "Behance",
-        "url": "https://behance.net",
-        "icon": "behance"
-      },
-      {
-        "name": "LinkedIn",
-        "url": "https://linkedin.com",
-        "icon": "linkedin"
-      },
-      {
-        "name": "Instagram",
-        "url": "https://instagram.com",
-        "icon": "instagram"
-      },
-      {
-        "name": "GitHub",
-        "url": "https://github.com",
-        "icon": "github"
-      },
-      {
-        "name": "Email",
-        "url": "mailto:kendhikinata24@gmail.com",
-        "icon": "email"
-      }
-    ]
-  },
   "hero": {
-    "videoSrc": "/videos/showreel.mp4",
     "poster": "/images/projects/archviz_interior.jpg",
-    "callsign": "SURABAYA, ID · 3D ANIMATION & CGI GENERALIST · MULTIMEDIA DESIGN",
     "tagline": "Crafting high-fidelity 3D environments, hard-surface assets, and architectural visualizations, paired with commercial graphic design, motion, and digital product craft.",
+    "callsign": "SURABAYA, ID · 3D ANIMATION & CGI GENERALIST · MULTIMEDIA DESIGN",
+    "videoSrc": "/videos/showreel.mp4",
     "tickerText": "SURABAYA, ID · 3D ANIMATION & CGI GENERALIST · MULTIMEDIA DESIGN · GRAPHIC DESIGN & VIDEO EDITING · BLENDER & MAYA"
   },
   "about": [
@@ -55,247 +11,30 @@
     "Over the past few years, I have executed more than 10 freelance 3D commissions for international clients, delivering game-ready props, stylized fantasy dioramas, and photorealistic architectural visualizations (Archviz) using Blender, Autodesk Maya, and Substance 3D Painter.",
     "What sets my work apart is my cross-disciplinary versatility: alongside 3D and CGI, I create high-impact graphic campaigns and video productions (having directed 30+ property reels and marketing assets at PT Wong Bejo Joyo), as well as interactive UI/UX interfaces for game HUDs and modern web platforms. I thrive at the frontier where visual art meets functional software."
   ],
-  "experience": [
-    {
-      "period": "2024 — PRESENT",
-      "role": "Freelance 3D Artist — Environment & Hard-Surface Specialist",
-      "company": "Independent / Global Remote",
-      "description": "Completed over 10 international 3D modeling and visualization projects. Created game-ready low-poly and stylized 3D assets, modular environment sets, and architectural renderings. Managed the end-to-end pipeline from conceptual geometry and high-to-low poly baking to UV unwrap, PBR texturing, and photorealistic lighting.",
-      "tags": [
-        "Blender",
-        "Substance 3D",
-        "Maya",
-        "PBR Texturing",
-        "Archviz",
-        "Hard-Surface"
-      ],
-      "previewImages": [
-        "/images/projects/hardsurface_mech.jpg",
-        "/images/projects/archviz_interior.jpg",
-        "/images/projects/stylized_shrine.jpg"
-      ]
-    },
-    {
-      "period": "MAR 2024 — DEC 2024",
-      "role": "Multimedia Designer — Graphic Design & Video Editing",
-      "company": "PT Wong Bejo Joyo",
-      "description": "Produced and edited 30+ high-production real estate video reels and commercial marketing campaigns for Instagram and TikTok. Spearheaded weekly creative direction, visual pacing, sound design, and graphic promotional templates.",
-      "tags": [
-        "Premiere Pro",
-        "Photoshop",
-        "Video Editing",
-        "Graphic Design",
-        "Meta Ads",
-        "Reels Production"
-      ],
-      "previewImages": [
-        "/images/projects/marketing_reels.jpg"
-      ]
-    },
-    {
-      "period": "2020 — PRESENT",
-      "role": "Active Contributor & Community Member",
-      "company": "Blender Community & Hidden Dev",
-      "description": "Regular participant in global 3D modeling challenges, topology reviews, and asset critiques within the Blender community. Active contributor in the Hidden Dev community, collaborating on web UI/UX projects, automation tools, and front-end code experiments.",
-      "tags": [
-        "Blender Discord",
-        "Hidden Dev",
-        "Web Dev",
-        "UI/UX",
-        "3D Peer Critique"
-      ],
-      "previewImages": [
-        "/images/projects/game_ui_kit.jpg",
-        "/images/projects/stylized_shrine.jpg"
-      ]
-    }
-  ],
   "awards": [
     {
-      "title": "Juara 1 Lomba 3D Modeling",
-      "issuer": "Event Internal Jurusan Animasi SMKN 2 Surabaya",
       "year": "2023",
+      "title": "Juara 1 Lomba 3D Modeling",
       "detail": "Awarded 1st place across the entire animation cohort for hard-surface asset modeling and creative lighting.",
+      "issuer": "Event Internal Jurusan Animasi SMKN 2 Surabaya",
       "previewImages": [
         "/images/projects/hardsurface_mech.jpg"
       ]
     },
     {
-      "title": "\"Garisan Realitas\" — 3D Animated Short Film (Proyek Akhir UKK 2025)",
-      "issuer": "SMKN 2 Surabaya Final Production",
       "year": "2025",
+      "title": "\"Garisan Realitas\" — 3D Animated Short Film (Proyek Akhir UKK 2025)",
       "detail": "Menangani keseluruhan pipeline produksi animasi 3D: modeling, rigging, keyframe animation, lighting, rendering di Blender, hingga sound design dan editing di Premiere Pro.",
+      "issuer": "SMKN 2 Surabaya Final Production",
       "previewImages": [
         "/images/projects/stylized_shrine.jpg"
       ]
     },
     {
-      "title": "Cambridge CIE Primary International Program",
-      "issuer": "Khadijah 2 Primary School (CIE Centre UD 268)",
       "year": "2013 — 2019",
-      "detail": "International standard English and mathematics curriculum certification."
-    }
-  ],
-  "projects": [
-    {
-      "id": "wong-bejo-joyo-campaign",
-      "title": "PT Wong Bejo Joyo — Commercial Social Media & Video Campaign",
-      "category": "commercial-video",
-      "categoryLabel": "Commercial & Video",
-      "role": "Digital Marketing, Graphic Designer & Videographer Intern (2024–2025)",
-      "year": "2024 — 2025",
-      "image": "/images/projects/marketing_reels.jpg",
-      "summary": "Memproduksi dan menyunting 30+ video promosi properti (drone footage, color grading, motion text) serta desain visual feed/story untuk Instagram Reels & TikTok.",
-      "description": "Memproduksi dan menyunting lebih dari 30 video promosi properti (termasuk pengolahan drone footage, color grading, dan motion text) serta desain visual feed/story untuk Instagram Reels dan TikTok. Kampanye visual dan penjadwalan konten ini berhasil meningkatkan engagement rate akun hingga 45% dan pertumbuhan followers sebesar 20%, sekaligus mendukung materi iklan berbayar pada Facebook Ads dan Instagram Ads.",
-      "tools": [
-        "Adobe Photoshop",
-        "Adobe Premiere Pro",
-        "CapCut Pro",
-        "Canva",
-        "Meta Business Suite"
-      ],
-      "link": "https://instagram.com",
-      "featured": true,
-      "stats": "30+ Property Videos · +45% Engagement · +20% Followers",
-      "images": [
-        "/images/projects/marketing_reels.jpg",
-        "/images/projects/stylized_shrine.jpg",
-        "/images/projects/archviz_interior.jpg"
-      ],
-      "carousel": true
-    },
-    {
-      "id": "kopi-satu-product-animation",
-      "title": "Kopi Satu — 3D Product Animation & Brand Visual Identity",
-      "category": "commercial-video",
-      "categoryLabel": "3D Product Animation",
-      "role": "3D Product Animator & Brand Designer (Concept Case Study)",
-      "year": "2025",
-      "image": "/images/projects/archviz_interior.jpg",
-      "summary": "Proyek eksplorasi komersial terpadu: pemodelan kemasan produk 3D, static product rendering, dan 3D product animation untuk iklan digital dengan identitas visual 2D.",
-      "description": "Proyek eksplorasi komersial terpadu yang menggabungkan pemodelan kemasan produk 3D, static product rendering, dan 3D product animation untuk iklan digital. Dilengkapi dengan perancangan identitas visual 2D, desain kemasan, serta motion graphics promosi untuk kebutuhan media sosial.",
-      "tools": [
-        "Blender",
-        "Adobe Photoshop",
-        "After Effects",
-        "Premiere Pro"
-      ],
-      "link": "https://artstation.com",
-      "featured": true,
-      "stats": "3D Product Modeling · Motion Commercial · Packaging Design · Photoreal"
-    },
-    {
-      "id": "aruna-regency-archviz",
-      "title": "Aruna Regency — 3D Architectural Visualization & Marketing Kit",
-      "category": "commercial-video",
-      "categoryLabel": "3D Archviz & Marketing Kit",
-      "role": "3D Archviz Artist & Multimedia Designer (Concept Case Study)",
-      "year": "2024",
-      "image": "/images/projects/archviz_interior.jpg",
-      "summary": "Pengembangan materi pemasaran properti end-to-end: 3D archviz (static render & walkthrough), desain floorplan informatif, brand identity, dan motion graphics promosi.",
-      "description": "Pengembangan materi pemasaran properti secara menyeluruh (end-to-end), mencakup 3D architectural visualization (static render dan animasi walkthrough bangunan), desain floorplan yang informatif, perancangan identitas brand perumahan, serta motion graphics untuk materi promosi digital.",
-      "tools": [
-        "Blender",
-        "Substance Painter",
-        "Adobe Photoshop",
-        "Premiere Pro"
-      ],
-      "link": "https://artstation.com",
-      "featured": true,
-      "stats": "End-to-End Archviz · Walkthrough Animation · Brand Identity"
-    },
-    {
-      "id": "garisan-realitas-short-film",
-      "title": "\"Garisan Realitas\" — 3D Animated Short Film (UKK 2025)",
-      "category": "3d-film-environment",
-      "categoryLabel": "3D Animated Short",
-      "role": "3D Animator, Modeler & Video Editor — SMKN 2 Surabaya",
-      "year": "2025",
-      "image": "/images/projects/stylized_shrine.jpg",
-      "summary": "Film animasi pendek 3D Proyek Akhir UKK Animasi SMKN 2 Surabaya. Menangani pipeline modeling, rigging, keyframe animation, lighting, Cycles rendering, dan compositing.",
-      "description": "Film animasi pendek 3D yang diproduksi sebagai Proyek Akhir Uji Kompetensi Keahlian (UKK) Jurusan Animasi SMKN 2 Surabaya. Menangani keseluruhan pipeline produksi mulai dari modeling, rigging, keyframe animation, lighting, rendering di Blender, hingga proses compositing, tata suara, dan final editing di Adobe Premiere Pro.",
-      "tools": [
-        "Blender",
-        "Adobe Premiere Pro"
-      ],
-      "link": "https://youtube.com",
-      "featured": true,
-      "stats": "Lead 3D Production · Full Pipeline UKK 2025"
-    },
-    {
-      "id": "cyberpunk-snowy-environments",
-      "title": "Cyberpunk Neo City & Snowy Canyon — 3D Environment Design",
-      "category": "3d-film-environment",
-      "categoryLabel": "3D Environment Art",
-      "role": "3D Environment Artist",
-      "year": "2024",
-      "image": "/images/projects/hardsurface_mech.jpg",
-      "summary": "Dua karya eksplorasi 3D environment atmosferik: Snowy Canyon (pencahayaan natural dan skala ruang) dan Cyberpunk Neo City (neon, hard-surface, sinematik).",
-      "description": "Dua karya eksplorasi 3D environment dengan pendekatan atmosfer yang kontras: lanskap alam bersalju (Snowy Canyon) yang berfokus pada pencahayaan natural dan skala ruang, serta lanskap kota futuristik (Cyberpunk Neo City) yang menonjolkan permainan lampu neon, tekstur hard-surface, dan mood sinematik.",
-      "tools": [
-        "Blender",
-        "Substance Painter",
-        "Adobe Photoshop"
-      ],
-      "link": "https://artstation.com",
-      "featured": true,
-      "stats": "Dual Cinematic Environments · Atmospheric Lighting"
-    },
-    {
-      "id": "stylized-skateboard-pack",
-      "title": "Stylized Hand-Painted Skateboard Pack (11 Game-Ready Assets)",
-      "category": "game-assets-animation",
-      "categoryLabel": "Game-Ready 3D Assets",
-      "role": "Freelance 3D Prop Artist",
-      "year": "2024",
-      "image": "/images/projects/game_ui_kit.jpg",
-      "summary": "Pembuatan 11 aset 3D skateboard bergaya low-poly stylized dengan tekstur hand-painted untuk game engine Roblox, dengan topologi optimal dan UV mapping efisien.",
-      "description": "Pembuatan 11 aset 3D skateboard bergaya low-poly stylized dengan tekstur hand-painted untuk kebutuhan game engine (Roblox). Dirancang dengan topologi yang teroptimasi dan UV mapping yang efisien tanpa mengorbankan detail estetika visual.",
-      "tools": [
-        "Blender",
-        "Substance Painter",
-        "Adobe Photoshop"
-      ],
-      "link": "https://artstation.com",
-      "featured": true,
-      "stats": "11 Game-Ready Assets · Hand-Painted PBR · Optimized Topology"
-    },
-    {
-      "id": "elementals-combat-animation",
-      "title": "\"Elementals\" — Stylized 3D Combat & Action Animation",
-      "category": "game-assets-animation",
-      "categoryLabel": "3D Combat Animation",
-      "role": "3D Character Animator",
-      "year": "2024",
-      "image": "/images/projects/stylized_shrine.jpg",
-      "summary": "Animasi pendek aksi pertarungan (combat sequence) berfokus pada dinamika gerak karakter, timing aksi responsif, serta koreografi kamera ekspresif.",
-      "description": "Animasi pendek pertarungan (action/combat sequence) yang berfokus pada dinamika gerak karakter, timing aksi yang responsif, serta koreografi kamera yang ekspresif.",
-      "tools": [
-        "Blender",
-        "Roblox Studio"
-      ],
-      "link": "https://youtube.com",
-      "featured": true,
-      "stats": "Combat Sequence · Dynamic Camera Choreography · Keyframe Timing"
-    },
-    {
-      "id": "rea3-studio-digital-projects",
-      "title": "ReA3 Studio & Digital Web Projects",
-      "category": "web-creative-tech",
-      "categoryLabel": "Web Design & Systems",
-      "role": "Founder, Web Designer & Developer (2024–2026)",
-      "year": "2024 — 2026",
-      "image": "/images/projects/game_ui_kit.jpg",
-      "summary": "Perancangan UI/UX dan pengembangan web portofolio kreatif ReA3 Studio, platform komunitas interaktif, dan sistem otomatisasi (RVC Regiment Web & Veritas System).",
-      "description": "Merancang antarmuka visual (UI/UX) dan mengembangkan situs web portofolio kreatif ReA3 Studio beserta beberapa proyek situs komunitas interaktif dan sistem otomatisasi (RVC Regiment Web & Veritas System). Menunjukkan kemampuan adaptasi cepat terhadap berbagai software digital dan manajemen proyek kreatif.",
-      "tools": [
-        "Figma",
-        "HTML/CSS/JavaScript",
-        "UI/UX Design"
-      ],
-      "link": "https://github.com",
-      "featured": true,
-      "stats": "Founder & Dev · Interactive Community Sites · Automation Systems"
+      "title": "Cambridge CIE Primary International Program",
+      "detail": "International standard English and mathematics curriculum certification.",
+      "issuer": "Khadijah 2 Primary School (CIE Centre UD 268)"
     }
   ],
   "skills": {
@@ -336,6 +75,269 @@
       "Bilingual (Indonesian & English)"
     ]
   },
+  "profile": {
+    "role": "3D Animation & CGI Generalist · Multimedia & Graphic Designer",
+    "email": "kendhikinata24@gmail.com",
+    "phone": "+62 858 5751 1756",
+    "avatar": "/images/avatar_kinata.jpg",
+    "handle": "Kinata",
+    "status": "Available for Q2-Q3 Commissions & Remote Roles",
+    "socials": [
+      {
+        "url": "https://artstation.com",
+        "icon": "artstation",
+        "name": "ArtStation"
+      },
+      {
+        "url": "https://behance.net",
+        "icon": "behance",
+        "name": "Behance"
+      },
+      {
+        "url": "https://linkedin.com",
+        "icon": "linkedin",
+        "name": "LinkedIn"
+      },
+      {
+        "url": "https://instagram.com",
+        "icon": "instagram",
+        "name": "Instagram"
+      },
+      {
+        "url": "https://github.com",
+        "icon": "github",
+        "name": "GitHub"
+      },
+      {
+        "url": "mailto:kendhikinata24@gmail.com",
+        "icon": "email",
+        "name": "Email"
+      }
+    ],
+    "tagline": "Crafting high-fidelity 3D environments, hard-surface assets, and architectural visualizations, paired with commercial graphic design, motion, and digital product craft.",
+    "fullName": "Achmad Kendhikinata Kuswirawanto",
+    "location": "Surabaya, Indonesia",
+    "whatsappUrl": "https://wa.me/6285857511756?text=Hi%20Kinata,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!"
+  },
+  "projects": [
+    {
+      "id": "wong-bejo-joyo-campaign",
+      "link": "https://www.instagram.com/official.maurahill",
+      "role": "Digital Marketing, Graphic Designer & Videographer Intern (2024–2025)",
+      "year": "2024 — 2025",
+      "image": "https://oukoazanrinrxtmgzstx.supabase.co/storage/v1/object/public/portfolio-media/images/projects/1792997309933_Real_estate_social_media_branding_20261026133352.jpg",
+      "stats": "30+ Property Videos · +45% Engagement · +20% Followers",
+      "title": "PT Wong Bejo Joyo — Commercial Social Media & Video Campaign",
+      "tools": [
+        "Adobe Photoshop",
+        "Adobe Premiere Pro",
+        "CapCut Pro",
+        "Canva",
+        "Meta Business Suite"
+      ],
+      "images": [
+        "https://oukoazanrinrxtmgzstx.supabase.co/storage/v1/object/public/portfolio-media/images/projects/1792997309933_Real_estate_social_media_branding_20261026133352.jpg",
+        "https://oukoazanrinrxtmgzstx.supabase.co/storage/v1/object/public/portfolio-media/images/projects/1793023863474_official.maurahill_1765766931_3787850016175138118_63718846958.jpg_20261026193304.jpg",
+        "https://oukoazanrinrxtmgzstx.supabase.co/storage/v1/object/public/portfolio-media/images/projects/1793023880960_Real_estate_campaign_post_graphic_20261026193303.jpg",
+        "https://oukoazanrinrxtmgzstx.supabase.co/storage/v1/object/public/portfolio-media/images/projects/1793023880291_Modern_kitchen_interior_design_20261026193301.jpg",
+        "https://oukoazanrinrxtmgzstx.supabase.co/storage/v1/object/public/portfolio-media/images/projects/1793023880965_Woman_meditating_outdoors_20261026193300.jpg"
+      ],
+      "summary": "Memproduksi dan menyunting 30+ video promosi properti (drone footage, color grading, motion text) serta desain visual feed/story untuk Instagram Reels & TikTok.",
+      "carousel": true,
+      "category": "commercial-video",
+      "featured": true,
+      "description": "Memproduksi dan menyunting lebih dari 30 video promosi properti (termasuk pengolahan drone footage, color grading, dan motion text) serta desain visual feed/story untuk Instagram Reels dan TikTok. Kampanye visual dan penjadwalan konten ini berhasil meningkatkan engagement rate akun hingga 45% dan pertumbuhan followers sebesar 20%, sekaligus mendukung materi iklan berbayar pada Facebook Ads dan Instagram Ads.",
+      "categoryLabel": "Commercial & Video"
+    },
+    {
+      "id": "kopi-satu-product-animation",
+      "link": "https://artstation.com",
+      "role": "3D Product Animator & Brand Designer (Concept Case Study)",
+      "year": "2025",
+      "image": "/images/projects/archviz_interior.jpg",
+      "stats": "3D Product Modeling · Motion Commercial · Packaging Design · Photoreal",
+      "title": "Kopi Satu — 3D Product Animation & Brand Visual Identity",
+      "tools": [
+        "Blender",
+        "Adobe Photoshop",
+        "After Effects",
+        "Premiere Pro"
+      ],
+      "summary": "Proyek eksplorasi komersial terpadu: pemodelan kemasan produk 3D, static product rendering, dan 3D product animation untuk iklan digital dengan identitas visual 2D.",
+      "category": "commercial-video",
+      "featured": true,
+      "description": "Proyek eksplorasi komersial terpadu yang menggabungkan pemodelan kemasan produk 3D, static product rendering, dan 3D product animation untuk iklan digital. Dilengkapi dengan perancangan identitas visual 2D, desain kemasan, serta motion graphics promosi untuk kebutuhan media sosial.",
+      "categoryLabel": "3D Product Animation"
+    },
+    {
+      "id": "aruna-regency-archviz",
+      "link": "https://artstation.com",
+      "role": "3D Archviz Artist & Multimedia Designer (Concept Case Study)",
+      "year": "2024",
+      "image": "/images/projects/archviz_interior.jpg",
+      "stats": "End-to-End Archviz · Walkthrough Animation · Brand Identity",
+      "title": "Aruna Regency — 3D Architectural Visualization & Marketing Kit",
+      "tools": [
+        "Blender",
+        "Substance Painter",
+        "Adobe Photoshop",
+        "Premiere Pro"
+      ],
+      "summary": "Pengembangan materi pemasaran properti end-to-end: 3D archviz (static render & walkthrough), desain floorplan informatif, brand identity, dan motion graphics promosi.",
+      "category": "commercial-video",
+      "featured": true,
+      "description": "Pengembangan materi pemasaran properti secara menyeluruh (end-to-end), mencakup 3D architectural visualization (static render dan animasi walkthrough bangunan), desain floorplan yang informatif, perancangan identitas brand perumahan, serta motion graphics untuk materi promosi digital.",
+      "categoryLabel": "3D Archviz & Marketing Kit"
+    },
+    {
+      "id": "garisan-realitas-short-film",
+      "link": "https://youtube.com",
+      "role": "3D Animator, Modeler & Video Editor — SMKN 2 Surabaya",
+      "year": "2025",
+      "image": "/images/projects/stylized_shrine.jpg",
+      "stats": "Lead 3D Production · Full Pipeline UKK 2025",
+      "title": "\"Garisan Realitas\" — 3D Animated Short Film (UKK 2025)",
+      "tools": [
+        "Blender",
+        "Adobe Premiere Pro"
+      ],
+      "summary": "Film animasi pendek 3D Proyek Akhir UKK Animasi SMKN 2 Surabaya. Menangani pipeline modeling, rigging, keyframe animation, lighting, Cycles rendering, dan compositing.",
+      "category": "3d-film-environment",
+      "featured": true,
+      "description": "Film animasi pendek 3D yang diproduksi sebagai Proyek Akhir Uji Kompetensi Keahlian (UKK) Jurusan Animasi SMKN 2 Surabaya. Menangani keseluruhan pipeline produksi mulai dari modeling, rigging, keyframe animation, lighting, rendering di Blender, hingga proses compositing, tata suara, dan final editing di Adobe Premiere Pro.",
+      "categoryLabel": "3D Animated Short"
+    },
+    {
+      "id": "cyberpunk-snowy-environments",
+      "link": "https://artstation.com",
+      "role": "3D Environment Artist",
+      "year": "2024",
+      "image": "/images/projects/hardsurface_mech.jpg",
+      "stats": "Dual Cinematic Environments · Atmospheric Lighting",
+      "title": "Cyberpunk Neo City & Snowy Canyon — 3D Environment Design",
+      "tools": [
+        "Blender",
+        "Substance Painter",
+        "Adobe Photoshop"
+      ],
+      "summary": "Dua karya eksplorasi 3D environment atmosferik: Snowy Canyon (pencahayaan natural dan skala ruang) dan Cyberpunk Neo City (neon, hard-surface, sinematik).",
+      "category": "3d-film-environment",
+      "featured": true,
+      "description": "Dua karya eksplorasi 3D environment dengan pendekatan atmosfer yang kontras: lanskap alam bersalju (Snowy Canyon) yang berfokus pada pencahayaan natural dan skala ruang, serta lanskap kota futuristik (Cyberpunk Neo City) yang menonjolkan permainan lampu neon, tekstur hard-surface, dan mood sinematik.",
+      "categoryLabel": "3D Environment Art"
+    },
+    {
+      "id": "stylized-skateboard-pack",
+      "link": "https://artstation.com",
+      "role": "Freelance 3D Prop Artist",
+      "year": "2024",
+      "image": "/images/projects/game_ui_kit.jpg",
+      "stats": "11 Game-Ready Assets · Hand-Painted PBR · Optimized Topology",
+      "title": "Stylized Hand-Painted Skateboard Pack (11 Game-Ready Assets)",
+      "tools": [
+        "Blender",
+        "Substance Painter",
+        "Adobe Photoshop"
+      ],
+      "summary": "Pembuatan 11 aset 3D skateboard bergaya low-poly stylized dengan tekstur hand-painted untuk game engine Roblox, dengan topologi optimal dan UV mapping efisien.",
+      "category": "game-assets-animation",
+      "featured": true,
+      "description": "Pembuatan 11 aset 3D skateboard bergaya low-poly stylized dengan tekstur hand-painted untuk kebutuhan game engine (Roblox). Dirancang dengan topologi yang teroptimasi dan UV mapping yang efisien tanpa mengorbankan detail estetika visual.",
+      "categoryLabel": "Game-Ready 3D Assets"
+    },
+    {
+      "id": "elementals-combat-animation",
+      "link": "https://youtube.com",
+      "role": "3D Character Animator",
+      "year": "2024",
+      "image": "/images/projects/stylized_shrine.jpg",
+      "stats": "Combat Sequence · Dynamic Camera Choreography · Keyframe Timing",
+      "title": "\"Elementals\" — Stylized 3D Combat & Action Animation",
+      "tools": [
+        "Blender",
+        "Roblox Studio"
+      ],
+      "summary": "Animasi pendek aksi pertarungan (combat sequence) berfokus pada dinamika gerak karakter, timing aksi responsif, serta koreografi kamera ekspresif.",
+      "category": "game-assets-animation",
+      "featured": true,
+      "description": "Animasi pendek pertarungan (action/combat sequence) yang berfokus pada dinamika gerak karakter, timing aksi yang responsif, serta koreografi kamera yang ekspresif.",
+      "categoryLabel": "3D Combat Animation"
+    },
+    {
+      "id": "rea3-studio-digital-projects",
+      "link": "https://github.com",
+      "role": "Founder, Web Designer & Developer (2024–2026)",
+      "year": "2024 — 2026",
+      "image": "/images/projects/game_ui_kit.jpg",
+      "stats": "Founder & Dev · Interactive Community Sites · Automation Systems",
+      "title": "ReA3 Studio & Digital Web Projects",
+      "tools": [
+        "Figma",
+        "HTML/CSS/JavaScript",
+        "UI/UX Design"
+      ],
+      "summary": "Perancangan UI/UX dan pengembangan web portofolio kreatif ReA3 Studio, platform komunitas interaktif, dan sistem otomatisasi (RVC Regiment Web & Veritas System).",
+      "category": "web-creative-tech",
+      "featured": true,
+      "description": "Merancang antarmuka visual (UI/UX) dan mengembangkan situs web portofolio kreatif ReA3 Studio beserta beberapa proyek situs komunitas interaktif dan sistem otomatisasi (RVC Regiment Web & Veritas System). Menunjukkan kemampuan adaptasi cepat terhadap berbagai software digital dan manajemen proyek kreatif.",
+      "categoryLabel": "Web Design & Systems"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Freelance 3D Artist — Environment & Hard-Surface Specialist",
+      "tags": [
+        "Blender",
+        "Substance 3D",
+        "Maya",
+        "PBR Texturing",
+        "Archviz",
+        "Hard-Surface"
+      ],
+      "period": "2024 — PRESENT",
+      "company": "Independent / Global Remote",
+      "description": "Completed over 10 international 3D modeling and visualization projects. Created game-ready low-poly and stylized 3D assets, modular environment sets, and architectural renderings. Managed the end-to-end pipeline from conceptual geometry and high-to-low poly baking to UV unwrap, PBR texturing, and photorealistic lighting.",
+      "previewImages": [
+        "/images/projects/hardsurface_mech.jpg",
+        "/images/projects/archviz_interior.jpg",
+        "/images/projects/stylized_shrine.jpg"
+      ]
+    },
+    {
+      "role": "Multimedia Designer — Graphic Design & Video Editing",
+      "tags": [
+        "Premiere Pro",
+        "Photoshop",
+        "Video Editing",
+        "Graphic Design",
+        "Meta Ads",
+        "Reels Production"
+      ],
+      "period": "MAR 2024 — DEC 2024",
+      "company": "PT Wong Bejo Joyo",
+      "description": "Produced and edited 30+ high-production real estate video reels and commercial marketing campaigns for Instagram and TikTok. Spearheaded weekly creative direction, visual pacing, sound design, and graphic promotional templates.",
+      "previewImages": [
+        "/images/projects/marketing_reels.jpg"
+      ]
+    },
+    {
+      "role": "Active Contributor & Community Member",
+      "tags": [
+        "Blender Discord",
+        "Hidden Dev",
+        "Web Dev",
+        "UI/UX",
+        "3D Peer Critique"
+      ],
+      "period": "2020 — PRESENT",
+      "company": "Blender Community & Hidden Dev",
+      "description": "Regular participant in global 3D modeling challenges, topology reviews, and asset critiques within the Blender community. Active contributor in the Hidden Dev community, collaborating on web UI/UX projects, automation tools, and front-end code experiments.",
+      "previewImages": [
+        "/images/projects/game_ui_kit.jpg",
+        "/images/projects/stylized_shrine.jpg"
+      ]
+    }
+  ],
   "activityFeed": [
     {
       "id": "act-1",
@@ -363,23 +365,23 @@
     {
       "id": "track-cgi",
       "name": "3D & CGI Specialist",
-      "tagline": "Specialized focus on 3D Modeling, Hard-Surface, Archviz & Game Assets",
       "pdfUrl": "/cv/Kendhikinata_CV_3D_Artist.pdf",
-      "summary": "Passionate 3D Artist and SMKN 2 Surabaya Animation graduate with proven track record of 10+ international client commissions. Expert in Blender, Maya, and Substance 3D Painter across hard-surface modeling, environment art, and architectural rendering."
+      "summary": "Passionate 3D Artist and SMKN 2 Surabaya Animation graduate with proven track record of 10+ international client commissions. Expert in Blender, Maya, and Substance 3D Painter across hard-surface modeling, environment art, and architectural rendering.",
+      "tagline": "Specialized focus on 3D Modeling, Hard-Surface, Archviz & Game Assets"
     },
     {
       "id": "track-marketing",
       "name": "Digital Marketing & Design",
-      "tagline": "Specialized focus on Social Campaigns, Video Direction & Visual Branding",
       "pdfUrl": "/cv/Kendhikinata_CV_Digital_Marketing.pdf",
-      "summary": "Creative digital designer and videographer with hands-on corporate internship experience at PT Wong Bejo Joyo. Generated 30+ property promotional videos, lifted engagement by 45%, and managed targeted Meta campaigns."
+      "summary": "Creative digital designer and videographer with hands-on corporate internship experience at PT Wong Bejo Joyo. Generated 30+ property promotional videos, lifted engagement by 45%, and managed targeted Meta campaigns.",
+      "tagline": "Specialized focus on Social Campaigns, Video Direction & Visual Branding"
     },
     {
       "id": "track-generalist",
       "name": "Creative Technologist (All-Round)",
-      "tagline": "Full multi-disciplinary portfolio spanning 3D, Graphic, Motion, and Web UI/UX",
       "pdfUrl": "/cv/Kendhikinata_CV_Generalist.pdf",
-      "summary": "Versatile digital creative bridging high-fidelity CGI visual craft with modern graphic design, video editing, and interactive front-end web technologies."
+      "summary": "Versatile digital creative bridging high-fidelity CGI visual craft with modern graphic design, video editing, and interactive front-end web technologies.",
+      "tagline": "Full multi-disciplinary portfolio spanning 3D, Graphic, Motion, and Web UI/UX"
     }
   ]
 }

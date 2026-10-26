@@ -1,16 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import portfolioData from "@/../data/portfolio.json";
+import defaultPortfolio from "@/../data/portfolio.json";
 import Navbar from "@/components/Navbar";
 import StatusBadge from "@/components/StatusBadge";
 
 export default function ResumePage() {
-  const { profile, resumeTracks, experience, awards, skills, activityFeed } = portfolioData;
+  const [portfolio, setPortfolio] = useState(defaultPortfolio);
+
+  useEffect(() => {
+    fetch("/api/portfolio", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.success && data.portfolio) {
+          setPortfolio(data.portfolio);
+        }
+      })
+      .catch((err) => console.warn("Resume background sync error:", err));
+  }, []);
+
+  const {
+    profile = defaultPortfolio.profile,
+    resumeTracks = defaultPortfolio.resumeTracks || [],
+    experience = defaultPortfolio.experience,
+    awards = defaultPortfolio.awards,
+    skills = defaultPortfolio.skills,
+    activityFeed = defaultPortfolio.activityFeed,
+  } = portfolio;
   const [selectedTrackId, setSelectedTrackId] = useState("track-cgi");
 
-  const currentTrack = resumeTracks.find((t) => t.id === selectedTrackId) || resumeTracks[0];
+  const currentTrack = (resumeTracks && resumeTracks.length > 0)
+    ? (resumeTracks.find((t) => t.id === selectedTrackId) || resumeTracks[0])
+    : (defaultPortfolio.resumeTracks[0]);
 
   return (
     <>

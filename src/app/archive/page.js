@@ -1,14 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import portfolioData from "@/../data/portfolio.json";
+import defaultPortfolio from "@/../data/portfolio.json";
 import Navbar from "@/components/Navbar";
 import StatusBadge from "@/components/StatusBadge";
 import ProjectModal from "@/components/ProjectModal";
 
 export default function ArchivePage() {
-  const { profile, projects, activityFeed } = portfolioData;
+  const [portfolio, setPortfolio] = useState(defaultPortfolio);
+
+  useEffect(() => {
+    fetch("/api/portfolio", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.success && data.portfolio) {
+          setPortfolio(data.portfolio);
+        }
+      })
+      .catch((err) => console.warn("Archive background sync error:", err));
+  }, []);
+
+  const {
+    profile = defaultPortfolio.profile,
+    projects = defaultPortfolio.projects,
+    activityFeed = defaultPortfolio.activityFeed,
+  } = portfolio;
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [activeProject, setActiveProject] = useState(null);

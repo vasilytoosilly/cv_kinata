@@ -7,7 +7,14 @@ export async function GET() {
     if (!data) {
       return NextResponse.json({ success: false, message: "No portfolio data found" }, { status: 404 });
     }
-    return NextResponse.json({ success: true, portfolio: data });
+    return NextResponse.json(
+      { success: true, portfolio: data },
+      {
+        headers: {
+          "Cache-Control": "no-store, max-age=0, must-revalidate",
+        },
+      }
+    );
   } catch (err) {
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }

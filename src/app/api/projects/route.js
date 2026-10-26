@@ -4,7 +4,14 @@ import { getPortfolioData, savePortfolioData } from "@/lib/supabase";
 export async function GET() {
   try {
     const data = await getPortfolioData();
-    return NextResponse.json({ success: true, projects: data?.projects || [] });
+    return NextResponse.json(
+      { success: true, projects: data?.projects || [] },
+      {
+        headers: {
+          "Cache-Control": "no-store, max-age=0, must-revalidate",
+        },
+      }
+    );
   } catch (err) {
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }
