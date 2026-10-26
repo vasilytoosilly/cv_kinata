@@ -23,13 +23,25 @@ export async function POST(request) {
       "web-creative-tech": "Web & Creative Tech",
     };
 
+    let images = [];
+    if (Array.isArray(body.images)) {
+      images = body.images.map((img) => (typeof img === "string" ? img.trim() : "")).filter(Boolean);
+    } else if (body.image) {
+      images = [body.image.trim()];
+    }
+    if (images.length === 0) {
+      images = ["/images/projects/archviz_interior.jpg"];
+    }
+
     const newProject = {
       id: body.id || `proj-${Date.now()}`,
       title: body.title,
       category: body.category || "commercial-video",
       categoryLabel: body.categoryLabel || categoryMap[body.category] || "Project",
       year: body.year || new Date().getFullYear().toString(),
-      image: body.image || "/images/projects/archviz_interior.jpg",
+      image: images[0],
+      images: images,
+      carousel: body.carousel !== undefined ? Boolean(body.carousel) : images.length > 1,
       summary: body.summary || "",
       description: body.description || body.summary || "",
       tools: Array.isArray(body.tools) ? body.tools : (body.tools ? body.tools.split(",").map(t => t.trim()) : ["Blender"]),
@@ -70,9 +82,31 @@ export async function PUT(request) {
     };
 
     const existing = data.projects[index];
+
+    let images = undefined;
+    if (body.images !== undefined) {
+      if (Array.isArray(body.images)) {
+        images = body.images.map((img) => (typeof img === "string" ? img.trim() : "")).filter(Boolean);
+      } else if (typeof body.images === "string" && body.images.trim()) {
+        images = [body.images.trim()];
+      }
+    } else if (body.image) {
+      const prevImages = Array.isArray(existing.images) ? [...existing.images] : [];
+      if (prevImages.length > 0) {
+        prevImages[0] = body.image.trim();
+        images = prevImages;
+      } else {
+        images = [body.image.trim()];
+      }
+    }
+
     const updated = {
       ...existing,
       ...body,
+      ...(images !== undefined ? { images, image: images[0] || existing.image } : {}),
+      carousel: body.carousel !== undefined
+        ? Boolean(body.carousel)
+        : (existing.carousel !== undefined ? existing.carousel : (images ? images.length > 1 : (existing.images?.length > 1))),
       categoryLabel: body.categoryLabel || categoryMap[body.category || existing.category] || existing.categoryLabel,
       tools: Array.isArray(body.tools)
         ? body.tools

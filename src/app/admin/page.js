@@ -93,6 +93,7 @@ export default function AdminDashboardPage() {
   const [editingProject, setEditingProject] = useState(null);
   const [savingEdit, setSavingEdit] = useState(false);
   const [editUploading, setEditUploading] = useState(false);
+  const [editImageUrlInput, setEditImageUrlInput] = useState("");
 
   // New Project Form State
   const [newProject, setNewProject] = useState({
@@ -107,7 +108,10 @@ export default function AdminDashboardPage() {
     link: "",
     stats: "",
     image: "/images/projects/marketing_reels.jpg",
+    images: ["/images/projects/marketing_reels.jpg"],
+    carousel: true,
   });
+  const [newImageUrlInput, setNewImageUrlInput] = useState("");
   const [submittingNew, setSubmittingNew] = useState(false);
   const [newUploading, setNewUploading] = useState(false);
 
@@ -197,40 +201,111 @@ export default function AdminDashboardPage() {
 
   // ===================== PROJECT EDITING HANDLERS =====================
   const openEditModal = (project) => {
+    const projImages = Array.isArray(project.images) && project.images.length > 0
+      ? [...project.images]
+      : (project.image ? [project.image] : []);
     setEditingProject({
       ...project,
       tools: Array.isArray(project.tools) ? project.tools.join(", ") : (project.tools || ""),
+      images: projImages,
+      image: projImages[0] || project.image || "",
+      carousel: project.carousel !== undefined ? Boolean(project.carousel) : projImages.length > 1,
     });
+    setEditImageUrlInput("");
   };
 
   const closeEditModal = () => {
     setEditingProject(null);
+    setEditImageUrlInput("");
   };
 
   const handleEditFileUpload = async (e) => {
-    const file = e.target.files?.[0];
+    const files = Array.from(e.target.files || []);
     e.target.value = "";
-    if (!file || !editingProject) return;
+    if (files.length === 0 || !editingProject) return;
 
     setEditUploading(true);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", "projects");
-
     try {
-      const res = await fetch("/api/upload", { method: "POST", body: formData });
-      const data = await res.json();
-      if (data.success) {
-        setEditingProject((prev) => ({ ...prev, image: data.url }));
-        showFeedback(`Image uploaded: ${data.fileName}. Click 'SAVE PROJECT CHANGES' to persist.`, "success");
+      const uploadPromises = files.map(async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", "projects");
+        const res = await fetch("/api/upload", { method: "POST", body: formData });
+        return await res.json();
+      });
+      const results = await Promise.all(uploadPromises);
+      const successfulUrls = results.filter((r) => r.success && r.url).map((r) => r.url);
+
+      if (successfulUrls.length > 0) {
+        setEditingProject((prev) => {
+          const existing = Array.isArray(prev.images) && prev.images.length > 0
+            ? [...prev.images]
+            : (prev.image ? [prev.image] : []);
+          const updated = [...existing, ...successfulUrls];
+          return {
+            ...prev,
+            images: updated,
+            image: updated[0] || prev.image,
+            carousel: prev.carousel !== undefined ? prev.carousel : updated.length > 1,
+          };
+        });
+        showFeedback(`Uploaded ${successfulUrls.length} image(s). Click 'SAVE PROJECT CHANGES' to persist.`, "success");
       } else {
-        showFeedback(`Upload error: ${data.message}`, "error");
+        showFeedback("Failed to upload selected file(s)", "error");
       }
     } catch {
-      showFeedback("Failed to upload image file", "error");
+      showFeedback("Failed to upload image file(s)", "error");
     } finally {
       setEditUploading(false);
     }
+  };
+
+  const handleAddEditImageUrl = (e) => {
+    if (e) e.preventDefault();
+    const trimmed = editImageUrlInput.trim();
+    if (!trimmed || !editingProject) return;
+    setEditingProject((prev) => {
+      const existing = Array.isArray(prev.images) && prev.images.length > 0
+        ? [...prev.images]
+        : (prev.image ? [prev.image] : []);
+      const updated = [...existing, trimmed];
+      return {
+        ...prev,
+        images: updated,
+        image: updated[0] || prev.image,
+        carousel: prev.carousel !== undefined ? prev.carousel : updated.length > 1,
+      };
+    });
+    setEditImageUrlInput("");
+  };
+
+  const handleRemoveEditImage = (index) => {
+    setEditingProject((prev) => {
+      const existing = Array.isArray(prev.images) ? [...prev.images] : (prev.image ? [prev.image] : []);
+      const updated = existing.filter((_, i) => i !== index);
+      return {
+        ...prev,
+        images: updated,
+        image: updated[0] || "",
+      };
+    });
+  };
+
+  const handleMoveEditImage = (index, direction) => {
+    setEditingProject((prev) => {
+      const existing = Array.isArray(prev.images) ? [...prev.images] : (prev.image ? [prev.image] : []);
+      const targetIdx = index + direction;
+      if (targetIdx < 0 || targetIdx >= existing.length) return prev;
+      const updated = [...existing];
+      const temp = updated[index];
+      updated[index] = updated[targetIdx];
+      updated[targetIdx] = temp;
+      return {
+        ...prev,
+        images: updated,
+        image: updated[0] || prev.image,
+      };
+    });
   };
 
   const handleSaveEditedProject = async (e) => {
@@ -280,29 +355,92 @@ export default function AdminDashboardPage() {
 
   // ===================== NEW PROJECT PUBLISHING =====================
   const handleNewFileUpload = async (e) => {
-    const file = e.target.files?.[0];
+    const files = Array.from(e.target.files || []);
     e.target.value = "";
-    if (!file) return;
+    if (files.length === 0) return;
 
     setNewUploading(true);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("folder", "projects");
-
     try {
-      const res = await fetch("/api/upload", { method: "POST", body: formData });
-      const data = await res.json();
-      if (data.success) {
-        setNewProject((prev) => ({ ...prev, image: data.url }));
-        showFeedback(`Image uploaded: ${data.fileName}. Click 'PUBLISH PROJECT' to save.`, "success");
+      const uploadPromises = files.map(async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("folder", "projects");
+        const res = await fetch("/api/upload", { method: "POST", body: formData });
+        return await res.json();
+      });
+      const results = await Promise.all(uploadPromises);
+      const successfulUrls = results.filter((r) => r.success && r.url).map((r) => r.url);
+
+      if (successfulUrls.length > 0) {
+        setNewProject((prev) => {
+          const existing = Array.isArray(prev.images) && prev.images.length > 0
+            ? [...prev.images]
+            : (prev.image ? [prev.image] : []);
+          const updated = [...existing, ...successfulUrls];
+          return {
+            ...prev,
+            images: updated,
+            image: updated[0] || prev.image,
+            carousel: prev.carousel !== undefined ? prev.carousel : updated.length > 1,
+          };
+        });
+        showFeedback(`Uploaded ${successfulUrls.length} image(s). Click 'PUBLISH PROJECT' to save.`, "success");
       } else {
-        showFeedback(`Upload failed: ${data.message}`, "error");
+        showFeedback("Upload failed for selected image(s)", "error");
       }
     } catch {
       showFeedback("Connection error during upload", "error");
     } finally {
       setNewUploading(false);
     }
+  };
+
+  const handleAddNewImageUrl = (e) => {
+    if (e) e.preventDefault();
+    const trimmed = newImageUrlInput.trim();
+    if (!trimmed) return;
+    setNewProject((prev) => {
+      const existing = Array.isArray(prev.images) && prev.images.length > 0
+        ? [...prev.images]
+        : (prev.image ? [prev.image] : []);
+      const updated = [...existing, trimmed];
+      return {
+        ...prev,
+        images: updated,
+        image: updated[0] || prev.image,
+        carousel: prev.carousel !== undefined ? prev.carousel : updated.length > 1,
+      };
+    });
+    setNewImageUrlInput("");
+  };
+
+  const handleRemoveNewImage = (index) => {
+    setNewProject((prev) => {
+      const existing = Array.isArray(prev.images) ? [...prev.images] : (prev.image ? [prev.image] : []);
+      const updated = existing.filter((_, i) => i !== index);
+      return {
+        ...prev,
+        images: updated,
+        image: updated[0] || "",
+      };
+    });
+  };
+
+  const handleMoveNewImage = (index, direction) => {
+    setNewProject((prev) => {
+      const existing = Array.isArray(prev.images) ? [...prev.images] : (prev.image ? [prev.image] : []);
+      const targetIdx = index + direction;
+      if (targetIdx < 0 || targetIdx >= existing.length) return prev;
+      const updated = [...existing];
+      const temp = updated[index];
+      updated[index] = updated[targetIdx];
+      updated[targetIdx] = temp;
+      return {
+        ...prev,
+        images: updated,
+        image: updated[0] || prev.image,
+      };
+    });
   };
 
   const handleCreateProject = async (e) => {
@@ -331,7 +469,10 @@ export default function AdminDashboardPage() {
           link: "",
           stats: "",
           image: "/images/projects/marketing_reels.jpg",
+          images: ["/images/projects/marketing_reels.jpg"],
+          carousel: true,
         });
+        setNewImageUrlInput("");
         setActiveTab("assets");
       } else {
         showFeedback(`Publish failed: ${data.message}`, "error");
@@ -768,6 +909,14 @@ export default function AdminDashboardPage() {
                             <span style={{ color: "var(--accent-gold)" }}>{p.stats}</span>
                           </>
                         )}
+                        {Array.isArray(p.images) && p.images.length > 1 && (
+                          <>
+                            <span style={{ color: "var(--text-muted)" }}>·</span>
+                            <span className="admin-badge-carousel">
+                              {p.carousel !== false ? `CAROUSEL (${p.images.length})` : `MULTI-IMAGE (${p.images.length})`}
+                            </span>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -959,40 +1108,125 @@ export default function AdminDashboardPage() {
               />
             </div>
 
-            {/* Media Upload Box */}
+            {/* Multi-Image Gallery & Carousel Controls */}
             <div className="admin-form-group">
-              <label>Project Hero Image</label>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "16px", alignItems: "center" }}>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleNewFileUpload}
-                  className="admin-input"
-                />
-                <input
-                  type="text"
-                  placeholder="/images/projects/custom.jpg"
-                  value={newProject.image}
-                  onChange={(e) => setNewProject({ ...newProject, image: e.target.value })}
-                  className="admin-input"
-                  style={{ width: "320px" }}
-                />
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "6px" }}>
+                <label>
+                  PROJECT SHOWCASE GALLERY ({Array.isArray(newProject.images) ? newProject.images.length : (newProject.image ? 1 : 0)} IMAGES)
+                </label>
+                <span style={{ fontSize: "0.74rem", color: "var(--text-muted)", fontFamily: "var(--font-code)" }}>
+                  First image is cover · Reorder with ‹ and ›
+                </span>
+              </div>
+
+              {/* Carousel Toggle */}
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255, 70, 85, 0.05)", border: "1px solid rgba(255, 70, 85, 0.2)" }}>
+                <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", userSelect: "none" }}>
+                  <input
+                    type="checkbox"
+                    checked={Boolean(newProject.carousel)}
+                    onChange={(e) => setNewProject({ ...newProject, carousel: e.target.checked })}
+                    style={{ width: "16px", height: "16px", accentColor: "var(--accent-riot)", cursor: "pointer" }}
+                  />
+                  <span style={{ fontSize: "0.82rem", color: "#ffffff", fontFamily: "var(--font-code)", fontWeight: 700 }}>
+                    ENABLE CARD CAROUSEL ON HOMEPAGE
+                  </span>
+                </label>
+                <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>
+                  (If enabled &amp; 2+ images, card cycles images on hover with arrows &amp; indicators)
+                </span>
+              </div>
+
+              {/* Upload & URL Controls */}
+              <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
+                <label
+                  className="admin-btn-action admin-btn-edit"
+                  style={{ cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "8px", padding: "9px 16px" }}
+                >
+                  <Icons.Upload />
+                  <span>UPLOAD IMAGES (MULTI)</span>
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleNewFileUpload}
+                    style={{ display: "none" }}
+                  />
+                </label>
+
+                <div style={{ display: "flex", gap: "8px", flex: 1, minWidth: "260px" }}>
+                  <input
+                    type="text"
+                    placeholder="Or paste image URL (e.g. /images/... or https://...)"
+                    value={newImageUrlInput}
+                    onChange={(e) => setNewImageUrlInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleAddNewImageUrl();
+                      }
+                    }}
+                    className="admin-input"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddNewImageUrl}
+                    className="admin-btn-action admin-btn-edit"
+                    style={{ padding: "8px 16px" }}
+                  >
+                    + ADD
+                  </button>
+                </div>
               </div>
 
               {newUploading && (
                 <div style={{ color: "var(--accent-riot)", fontSize: "0.8rem", fontFamily: "var(--font-code)", marginTop: "6px" }}>
-                  Uploading image to server...
+                  Uploading image(s) to server...
                 </div>
               )}
 
-              {newProject.image ? (
-                <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "16px" }}>
-                  <div style={{ width: "128px", height: "72px", border: "1px solid var(--border-medium)", position: "relative", overflow: "hidden" }}>
-                    <SafeImage src={newProject.image} alt="Preview" fill sizes="128px" style={{ objectFit: "cover" }} unoptimized />
-                  </div>
-                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-code)", wordBreak: "break-all" }}>{newProject.image}</span>
+              {/* Image Grid */}
+              {Array.isArray(newProject.images) && newProject.images.length > 0 && (
+                <div className="admin-images-grid">
+                  {newProject.images.map((imgSrc, idx) => (
+                    <div key={idx} className={`admin-image-item ${idx === 0 ? "is-cover" : ""}`}>
+                      <div className="admin-image-thumb">
+                        {idx === 0 && <span className="admin-image-badge-cover">COVER</span>}
+                        <span className="admin-image-index">#{idx + 1}</span>
+                        <SafeImage src={imgSrc} alt={`Image ${idx + 1}`} fill sizes="130px" style={{ objectFit: "cover" }} unoptimized />
+                      </div>
+                      <div className="admin-image-actions">
+                        <button
+                          type="button"
+                          disabled={idx === 0}
+                          onClick={() => handleMoveNewImage(idx, -1)}
+                          className="admin-img-btn"
+                          title="Move earlier (first image is cover)"
+                        >
+                          ‹
+                        </button>
+                        <button
+                          type="button"
+                          disabled={idx === newProject.images.length - 1}
+                          onClick={() => handleMoveNewImage(idx, 1)}
+                          className="admin-img-btn"
+                          title="Move later"
+                        >
+                          ›
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveNewImage(idx)}
+                          className="admin-img-btn admin-img-delete"
+                          title="Remove image"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ) : null}
+              )}
             </div>
 
             <button
@@ -1937,39 +2171,125 @@ export default function AdminDashboardPage() {
                 />
               </div>
 
-              {/* Media Replacement */}
+              {/* Media Multi-Image Gallery & Carousel Controls */}
               <div className="admin-form-group">
-                <label>Replace Showcase Image</label>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "16px", alignItems: "center" }}>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleEditFileUpload}
-                    className="admin-input"
-                  />
-                  <input
-                    type="text"
-                    value={editingProject.image}
-                    onChange={(e) => setEditingProject({ ...editingProject, image: e.target.value })}
-                    className="admin-input"
-                    style={{ width: "280px" }}
-                  />
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "6px" }}>
+                  <label>
+                    PROJECT SHOWCASE GALLERY ({Array.isArray(editingProject.images) ? editingProject.images.length : (editingProject.image ? 1 : 0)} IMAGES)
+                  </label>
+                  <span style={{ fontSize: "0.74rem", color: "var(--text-muted)", fontFamily: "var(--font-code)" }}>
+                    First image is cover · Reorder with ‹ and ›
+                  </span>
+                </div>
+
+                {/* Carousel Toggle */}
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "10px 14px", background: "rgba(255, 70, 85, 0.05)", border: "1px solid rgba(255, 70, 85, 0.2)" }}>
+                  <label style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", userSelect: "none" }}>
+                    <input
+                      type="checkbox"
+                      checked={Boolean(editingProject.carousel)}
+                      onChange={(e) => setEditingProject({ ...editingProject, carousel: e.target.checked })}
+                      style={{ width: "16px", height: "16px", accentColor: "var(--accent-riot)", cursor: "pointer" }}
+                    />
+                    <span style={{ fontSize: "0.82rem", color: "#ffffff", fontFamily: "var(--font-code)", fontWeight: 700 }}>
+                      ENABLE CARD CAROUSEL ON HOMEPAGE
+                    </span>
+                  </label>
+                  <span style={{ fontSize: "0.74rem", color: "var(--text-muted)" }}>
+                    (If enabled &amp; 2+ images, card cycles images on hover with arrows &amp; indicators)
+                  </span>
+                </div>
+
+                {/* Upload & URL Controls */}
+                <div style={{ display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }}>
+                  <label
+                    className="admin-btn-action admin-btn-edit"
+                    style={{ cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "8px", padding: "9px 16px" }}
+                  >
+                    <Icons.Upload />
+                    <span>UPLOAD IMAGES (MULTI)</span>
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={handleEditFileUpload}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+
+                  <div style={{ display: "flex", gap: "8px", flex: 1, minWidth: "260px" }}>
+                    <input
+                      type="text"
+                      placeholder="Or paste image URL (e.g. /images/... or https://...)"
+                      value={editImageUrlInput}
+                      onChange={(e) => setEditImageUrlInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          handleAddEditImageUrl();
+                        }
+                      }}
+                      className="admin-input"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAddEditImageUrl}
+                      className="admin-btn-action admin-btn-edit"
+                      style={{ padding: "8px 16px" }}
+                    >
+                      + ADD
+                    </button>
+                  </div>
                 </div>
 
                 {editUploading && (
                   <div style={{ color: "var(--accent-riot)", fontSize: "0.8rem", fontFamily: "var(--font-code)", marginTop: "6px" }}>
-                    Uploading replacement image...
+                    Uploading image(s) to server...
                   </div>
                 )}
 
-                {editingProject.image ? (
-                  <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "16px" }}>
-                    <div style={{ width: "128px", height: "72px", border: "1px solid var(--border-medium)", position: "relative", overflow: "hidden" }}>
-                      <SafeImage src={editingProject.image} alt="Preview" fill sizes="128px" style={{ objectFit: "cover" }} unoptimized />
-                    </div>
-                    <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-code)", wordBreak: "break-all" }}>{editingProject.image}</span>
+                {/* Image Grid */}
+                {Array.isArray(editingProject.images) && editingProject.images.length > 0 && (
+                  <div className="admin-images-grid">
+                    {editingProject.images.map((imgSrc, idx) => (
+                      <div key={idx} className={`admin-image-item ${idx === 0 ? "is-cover" : ""}`}>
+                        <div className="admin-image-thumb">
+                          {idx === 0 && <span className="admin-image-badge-cover">COVER</span>}
+                          <span className="admin-image-index">#{idx + 1}</span>
+                          <SafeImage src={imgSrc} alt={`Image ${idx + 1}`} fill sizes="130px" style={{ objectFit: "cover" }} unoptimized />
+                        </div>
+                        <div className="admin-image-actions">
+                          <button
+                            type="button"
+                            disabled={idx === 0}
+                            onClick={() => handleMoveEditImage(idx, -1)}
+                            className="admin-img-btn"
+                            title="Move earlier (first image is cover)"
+                          >
+                            ‹
+                          </button>
+                          <button
+                            type="button"
+                            disabled={idx === editingProject.images.length - 1}
+                            onClick={() => handleMoveEditImage(idx, 1)}
+                            className="admin-img-btn"
+                            title="Move later"
+                          >
+                            ›
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveEditImage(idx)}
+                            className="admin-img-btn admin-img-delete"
+                            title="Remove image"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ) : null}
+                )}
               </div>
 
               <div style={{ display: "flex", gap: "12px", marginTop: "12px", justifyContent: "flex-end" }}>

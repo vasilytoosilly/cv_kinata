@@ -156,7 +156,13 @@
       ],
       "link": "https://instagram.com",
       "featured": true,
-      "stats": "30+ Property Videos · +45% Engagement · +20% Followers"
+      "stats": "30+ Property Videos · +45% Engagement · +20% Followers",
+      "images": [
+        "/images/projects/marketing_reels.jpg",
+        "/images/projects/stylized_shrine.jpg",
+        "/images/projects/archviz_interior.jpg"
+      ],
+      "carousel": true
     },
     {
       "id": "kopi-satu-product-animation",

@@ -1,12 +1,27 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import SafeImage from "@/components/SafeImage";
 
 export default function ProjectModal({ project, onClose }) {
+  const images = Array.isArray(project?.images) && project.images.length > 0
+    ? project.images.filter(Boolean)
+    : (project?.image ? [project.image] : []);
+
+  const hasMultiple = images.length > 1;
+  const [activeIdx, setActiveIdx] = useState(0);
+
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+      } else if (hasMultiple) {
+        if (e.key === "ArrowLeft") {
+          setActiveIdx((prev) => (prev - 1 + images.length) % images.length);
+        } else if (e.key === "ArrowRight") {
+          setActiveIdx((prev) => (prev + 1) % images.length);
+        }
+      }
     }
     window.addEventListener("keydown", handleKeyDown);
     document.body.style.overflow = "hidden";
@@ -14,9 +29,11 @@ export default function ProjectModal({ project, onClose }) {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
     };
-  }, [onClose]);
+  }, [onClose, hasMultiple, images.length]);
 
   if (!project) return null;
+
+  const currentSrc = images[activeIdx] || project.image;
 
   return (
     <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-label={project.title}>
@@ -33,15 +50,62 @@ export default function ProjectModal({ project, onClose }) {
           </svg>
         </button>
 
-        <div className="modal-image-wrap">
+        <div className="modal-image-wrap" style={{ position: "relative" }}>
           <SafeImage
-            src={project.image}
-            alt={project.title}
-            width={1200}
-            height={675}
+            src={currentSrc}
+            alt={`${project.title} — Image ${activeIdx + 1}`}
+            fill
+            sizes="(max-width: 1200px) 100vw, 1200px"
             className="modal-image"
+            style={{ objectFit: "cover" }}
             priority
           />
+
+          {hasMultiple && (
+            <>
+              {/* Slide Counter */}
+              <div className="modal-carousel-counter">
+                <span>{activeIdx + 1} / {images.length}</span>
+              </div>
+
+              {/* Prev / Next Arrows */}
+              <button
+                type="button"
+                className="modal-carousel-arrow modal-carousel-arrow-prev"
+                onClick={() => setActiveIdx((prev) => (prev - 1 + images.length) % images.length)}
+                aria-label="Previous image"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+
+              <button
+                type="button"
+                className="modal-carousel-arrow modal-carousel-arrow-next"
+                onClick={() => setActiveIdx((prev) => (prev + 1) % images.length)}
+                aria-label="Next image"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+
+              {/* Thumbnail Strip / Dot Indicators */}
+              <div className="modal-carousel-dots" role="tablist" aria-label="Modal slide indicators">
+                {images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`modal-carousel-dot ${idx === activeIdx ? "active" : ""}`}
+                    onClick={() => setActiveIdx(idx)}
+                    aria-label={`Show image ${idx + 1}`}
+                    aria-selected={idx === activeIdx}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         <div className="modal-content-body">
@@ -63,35 +127,33 @@ export default function ProjectModal({ project, onClose }) {
 
           <p className="modal-desc">{project.description || project.summary}</p>
 
-          {project.stats && (
-            <div className="modal-stats-box">
-              <span className="stat-highlight-tag">METRIC</span>
-              <span>{project.stats}</span>
+          {project.tools && project.tools.length > 0 && (
+            <div className="modal-tools-wrap">
+              <span className="modal-tools-label">Discipline & Toolchain</span>
+              <div className="modal-tools-list">
+                {project.tools.map((t, i) => (
+                  <span key={i} className="tool-badge">{t}</span>
+                ))}
+              </div>
             </div>
           )}
 
-          <div>
-            <div className="modal-section-label">
-              Pipeline & Tools
+          {project.stats && (
+            <div className="modal-highlight-box">
+              <span className="highlight-label">PROJECT HIGHLIGHT</span>
+              <span className="highlight-val">{project.stats}</span>
             </div>
-            <div className="card-tags">
-              {project.tools?.map((tool, i) => (
-                <span key={i} className="tag-chip">
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
+          )}
 
           {project.link && (
-            <div style={{ marginTop: "12px" }}>
+            <div className="modal-cta-row">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-sweep-primary"
+                className="btn btn-primary modal-action-btn"
               >
-                <span>VIEW SHOWCASE ON {project.category === "3d-cgi" ? "ARTSTATION" : project.category === "graphic-motion" ? "BEHANCE" : "SOURCE"}</span>
+                <span>VISIT ASSET DESTINATION</span>
                 <span className="btn-arrow">↗</span>
               </a>
             </div>

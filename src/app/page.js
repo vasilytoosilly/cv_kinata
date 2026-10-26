@@ -10,6 +10,7 @@ import StatusBadge from "@/components/StatusBadge";
 import ProjectModal from "@/components/ProjectModal";
 import InteractiveExperienceCard from "@/components/InteractiveExperienceCard";
 import InteractiveAwardCard from "@/components/InteractiveAwardCard";
+import ProjectCardCarousel from "@/components/ProjectCardCarousel";
 
 /* Clean vector icons for professional socials */
 const SocialIcon = ({ name }) => {
@@ -306,7 +307,7 @@ export default function Home() {
               </div>
 
               <div className="projects-feed">
-                {filteredProjects.map((project) => (
+                {filteredProjects.map((project, idx) => (
                   <article
                     key={project.id}
                     className="project-card"
@@ -321,19 +322,7 @@ export default function Home() {
                     }}
                     aria-label={`View ${project.title}`}
                   >
-                    <div className="project-image-wrap">
-                      <SafeImage
-                        src={project.image}
-                        alt={project.title}
-                        width={800}
-                        height={450}
-                        className="project-image"
-                        loading="lazy"
-                      />
-                      <span className="project-category-badge">
-                        {project.categoryLabel}
-                      </span>
-                    </div>
+                    <ProjectCardCarousel project={project} priority={idx < 2} />
 
                     <div className="project-body">
                       <div className="project-title-row">
