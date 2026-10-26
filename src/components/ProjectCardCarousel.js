@@ -154,6 +154,7 @@ export default function ProjectCardCarousel({ project, priority = false }) {
           <button
             key={idx}
             type="button"
+            role="tab"
             className={`project-carousel-indicator-bar ${idx === currentIndex ? "active" : ""}`}
             onClick={(e) => handleDotClick(e, idx)}
             aria-label={`Go to slide ${idx + 1}`}

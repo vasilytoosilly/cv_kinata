@@ -154,16 +154,10 @@ export default function AdminDashboardPage() {
   const [awards, setAwards] = useState([]);
   const [savingExperience, setSavingExperience] = useState(false);
 
-  // Authentication check
-  useEffect(() => {
-    const token = localStorage.getItem("kinata_admin_token");
-    if (!token) {
-      router.push("/admin/login");
-    } else {
-      setAuthenticated(true);
-      fetchInitialData();
-    }
-  }, [router]);
+  const showFeedback = (text, type = "success") => {
+    setFeedback({ text, type });
+    setTimeout(() => setFeedback({ text: "", type: "" }), 6000);
+  };
 
   const fetchInitialData = async () => {
     try {
@@ -194,10 +188,19 @@ export default function AdminDashboardPage() {
     }
   };
 
-  const showFeedback = (text, type = "success") => {
-    setFeedback({ text, type });
-    setTimeout(() => setFeedback({ text: "", type: "" }), 6000);
-  };
+  // Authentication check
+  useEffect(() => {
+    const token = typeof window !== "undefined" ? localStorage.getItem("kinata_admin_token") : null;
+    if (!token) {
+      router.push("/admin/login");
+    } else {
+      const timer = setTimeout(() => {
+        setAuthenticated(true);
+        fetchInitialData();
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [router]);
 
   // ===================== PROJECT EDITING HANDLERS =====================
   const openEditModal = (project) => {

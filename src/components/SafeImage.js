@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 /**
@@ -21,7 +21,14 @@ export default function SafeImage({
   unoptimized = false,
   fallbackText = "NO IMAGE",
 }) {
+  const [prevSrc, setPrevSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
+
+  // Sync error state during render when src changes
+  if (prevSrc !== src) {
+    setPrevSrc(src);
+    setHasError(false);
+  }
 
   // Normalize src
   let cleanSrc = typeof src === "string" ? src.trim() : "";
@@ -47,11 +54,6 @@ export default function SafeImage({
       isValidUrl = false;
     }
   }
-
-  // Reset error state if src changes
-  useEffect(() => {
-    setHasError(false);
-  }, [src]);
 
   // If source is empty, invalid, or failed to load, display fallback placeholder
   if (!cleanSrc || !isValidUrl || hasError) {
@@ -130,5 +132,5 @@ export default function SafeImage({
     if (height) imageProps.height = height;
   }
 
-  return <Image {...imageProps} />;
+  return <Image alt={alt || ""} {...imageProps} />;
 }

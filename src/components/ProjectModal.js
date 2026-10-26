@@ -97,6 +97,7 @@ export default function ProjectModal({ project, onClose }) {
                   <button
                     key={idx}
                     type="button"
+                    role="tab"
                     className={`modal-carousel-dot ${idx === activeIdx ? "active" : ""}`}
                     onClick={() => setActiveIdx(idx)}
                     aria-label={`Show image ${idx + 1}`}

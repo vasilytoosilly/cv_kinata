@@ -10,8 +10,8 @@ export default function RetroLoader() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && sessionStorage.getItem("kinata_loader_seen")) {
-      setShouldRender(false);
-      return;
+      const timer = setTimeout(() => setShouldRender(false), 0);
+      return () => clearTimeout(timer);
     }
 
     const steps = [
