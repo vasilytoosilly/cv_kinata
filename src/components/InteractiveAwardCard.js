@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 
 export default function InteractiveAwardCard({ award }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -31,7 +31,7 @@ export default function InteractiveAwardCard({ award }) {
       {hasImages && hasInteracted && (
         <div className={`card-ambient-backdrop ${isHovered ? "visible" : ""}`} aria-hidden="true">
           <div className="card-ambient-image-wrap active">
-            <Image
+            <SafeImage
               src={images[0]}
               alt=""
               fill

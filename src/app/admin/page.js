@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 
 /* Clean vector icons for professional, anti-slop tactical UI */
 const Icons = {
@@ -120,6 +121,7 @@ export default function AdminDashboardPage() {
   });
   const [savingHero, setSavingHero] = useState(false);
   const [uploadingHeroVideo, setUploadingHeroVideo] = useState(false);
+  const [uploadingHeroPoster, setUploadingHeroPoster] = useState(false);
 
   // Specialized Résumé Tracks Customization State
   const [resumeTracks, setResumeTracks] = useState([]);
@@ -130,6 +132,7 @@ export default function AdminDashboardPage() {
   const [profileData, setProfileData] = useState({
     handle: "Kinata",
     fullName: "Kendhi Kinata",
+    avatar: "/images/avatar_kinata.jpg",
     role: "3D ANIMATION & CGI GENERALIST · MULTIMEDIA DESIGNER",
     location: "Surabaya, Indonesia",
     tagline: "",
@@ -140,6 +143,7 @@ export default function AdminDashboardPage() {
   });
   const [aboutParagraphs, setAboutParagraphs] = useState(["", "", ""]);
   const [savingProfile, setSavingProfile] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
   // Experience State
   const [experiences, setExperiences] = useState([]);
@@ -204,19 +208,21 @@ export default function AdminDashboardPage() {
   };
 
   const handleEditFileUpload = async (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
+    e.target.value = "";
     if (!file || !editingProject) return;
 
     setEditUploading(true);
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("folder", "projects");
 
     try {
       const res = await fetch("/api/upload", { method: "POST", body: formData });
       const data = await res.json();
       if (data.success) {
         setEditingProject((prev) => ({ ...prev, image: data.url }));
-        showFeedback(`Image replaced: ${data.fileName}`, "success");
+        showFeedback(`Image uploaded: ${data.fileName}. Click 'SAVE PROJECT CHANGES' to persist.`, "success");
       } else {
         showFeedback(`Upload error: ${data.message}`, "error");
       }
@@ -274,19 +280,21 @@ export default function AdminDashboardPage() {
 
   // ===================== NEW PROJECT PUBLISHING =====================
   const handleNewFileUpload = async (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
+    e.target.value = "";
     if (!file) return;
 
     setNewUploading(true);
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("folder", "projects");
 
     try {
       const res = await fetch("/api/upload", { method: "POST", body: formData });
       const data = await res.json();
       if (data.success) {
         setNewProject((prev) => ({ ...prev, image: data.url }));
-        showFeedback(`Image uploaded: ${data.fileName}`, "success");
+        showFeedback(`Image uploaded: ${data.fileName}. Click 'PUBLISH PROJECT' to save.`, "success");
       } else {
         showFeedback(`Upload failed: ${data.message}`, "error");
       }
@@ -337,7 +345,8 @@ export default function AdminDashboardPage() {
 
   // ===================== HERO SHOWCASE HANDLERS =====================
   const handleHeroVideoUpload = async (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
+    e.target.value = "";
     if (!file) return;
 
     setUploadingHeroVideo(true);
@@ -350,7 +359,7 @@ export default function AdminDashboardPage() {
       const data = await res.json();
       if (data.success) {
         setHeroSettings((prev) => ({ ...prev, videoSrc: data.url }));
-        showFeedback(`Showreel video uploaded: ${data.fileName}`, "success");
+        showFeedback(`Showreel video uploaded: ${data.fileName}. Click 'SAVE HERO SHOWCASE' to persist.`, "success");
       } else {
         showFeedback(`Video upload failed: ${data.message}`, "error");
       }
@@ -358,6 +367,58 @@ export default function AdminDashboardPage() {
       showFeedback("Error uploading video file", "error");
     } finally {
       setUploadingHeroVideo(false);
+    }
+  };
+
+  const handleHeroPosterUpload = async (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+
+    setUploadingHeroPoster(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folder", "hero");
+
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.success) {
+        setHeroSettings((prev) => ({ ...prev, poster: data.url }));
+        showFeedback(`Poster image uploaded: ${data.fileName}. Click 'SAVE HERO SHOWCASE' to persist.`, "success");
+      } else {
+        showFeedback(`Poster upload failed: ${data.message}`, "error");
+      }
+    } catch {
+      showFeedback("Error uploading poster image", "error");
+    } finally {
+      setUploadingHeroPoster(false);
+    }
+  };
+
+  const handleAvatarUpload = async (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+
+    setUploadingAvatar(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folder", "profile");
+
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.success) {
+        setProfileData((prev) => ({ ...prev, avatar: data.url }));
+        showFeedback(`Avatar uploaded: ${data.fileName}. Click 'SAVE OPERATOR PROFILE' to persist.`, "success");
+      } else {
+        showFeedback(`Avatar upload failed: ${data.message}`, "error");
+      }
+    } catch {
+      showFeedback("Error uploading avatar image", "error");
+    } finally {
+      setUploadingAvatar(false);
     }
   };
 
@@ -683,9 +744,9 @@ export default function AdminDashboardPage() {
                 <article key={p.id} className="admin-asset-card">
                   <div className="admin-asset-info">
                     <div className="admin-asset-thumb">
-                      <Image
+                      <SafeImage
                         src={p.image}
-                        alt=""
+                        alt={p.title || "Project thumbnail"}
                         fill
                         sizes="96px"
                         style={{ objectFit: "cover" }}
@@ -924,14 +985,14 @@ export default function AdminDashboardPage() {
                 </div>
               )}
 
-              {newProject.image && (
+              {newProject.image ? (
                 <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "16px" }}>
                   <div style={{ width: "128px", height: "72px", border: "1px solid var(--border-medium)", position: "relative", overflow: "hidden" }}>
-                    <Image src={newProject.image} alt="Preview" fill sizes="128px" style={{ objectFit: "cover" }} />
+                    <SafeImage src={newProject.image} alt="Preview" fill sizes="128px" style={{ objectFit: "cover" }} unoptimized />
                   </div>
-                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-code)" }}>{newProject.image}</span>
+                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-code)", wordBreak: "break-all" }}>{newProject.image}</span>
                 </div>
-              )}
+              ) : null}
             </div>
 
             <button
@@ -1015,12 +1076,37 @@ export default function AdminDashboardPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px" }}>
               <div className="admin-form-group">
                 <label>Fallback Poster Image</label>
-                <input
-                  type="text"
-                  value={heroSettings.poster}
-                  onChange={(e) => setHeroSettings({ ...heroSettings, poster: e.target.value })}
-                  className="admin-input"
-                />
+                <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "12px", alignItems: "center" }}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleHeroPosterUpload}
+                    disabled={uploadingHeroPoster}
+                    className="admin-input"
+                  />
+                  <input
+                    type="text"
+                    value={heroSettings.poster || ""}
+                    onChange={(e) => setHeroSettings({ ...heroSettings, poster: e.target.value })}
+                    className="admin-input"
+                    style={{ width: "240px" }}
+                  />
+                </div>
+                {uploadingHeroPoster && (
+                  <div style={{ fontSize: "0.82rem", color: "var(--accent-riot)", marginTop: "6px", fontFamily: "var(--font-code)" }}>
+                    Uploading poster image...
+                  </div>
+                )}
+                {heroSettings.poster ? (
+                  <div style={{ marginTop: "10px", display: "flex", alignItems: "center", gap: "12px" }}>
+                    <div style={{ width: "120px", height: "68px", border: "1px solid var(--border-medium)", position: "relative", overflow: "hidden" }}>
+                      <SafeImage src={heroSettings.poster} alt="Poster Preview" fill sizes="120px" style={{ objectFit: "cover" }} unoptimized />
+                    </div>
+                    <span style={{ fontSize: "0.78rem", color: "var(--text-muted)", fontFamily: "var(--font-code)", wordBreak: "break-all" }}>
+                      {heroSettings.poster}
+                    </span>
+                  </div>
+                ) : null}
               </div>
 
               <div className="admin-form-group">
@@ -1250,7 +1336,9 @@ export default function AdminDashboardPage() {
                           accept="application/pdf"
                           onChange={(e) => {
                             if (e.target.files?.[0]) {
-                              handlePdfUpload(idx, e.target.files[0]);
+                              const f = e.target.files[0];
+                              e.target.value = "";
+                              handlePdfUpload(idx, f);
                             }
                           }}
                           style={{ display: "none" }}
@@ -1296,6 +1384,40 @@ export default function AdminDashboardPage() {
           </div>
 
           <form onSubmit={handleSaveProfile} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            {/* Operator Avatar Upload */}
+            <div className="admin-form-group">
+              <label>Operator Avatar / Profile Photo</label>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "16px", alignItems: "center" }}>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarUpload}
+                  disabled={uploadingAvatar}
+                  className="admin-input"
+                />
+                <input
+                  type="text"
+                  value={profileData.avatar || ""}
+                  onChange={(e) => setProfileData({ ...profileData, avatar: e.target.value })}
+                  className="admin-input"
+                  style={{ width: "320px" }}
+                />
+              </div>
+              {uploadingAvatar && (
+                <div style={{ color: "var(--accent-riot)", fontSize: "0.8rem", fontFamily: "var(--font-code)", marginTop: "6px" }}>
+                  Uploading avatar image...
+                </div>
+              )}
+              {profileData.avatar ? (
+                <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "16px" }}>
+                  <div style={{ width: "64px", height: "64px", borderRadius: "50%", border: "2px solid var(--accent-riot)", position: "relative", overflow: "hidden" }}>
+                    <SafeImage src={profileData.avatar} alt="Avatar Preview" fill sizes="64px" style={{ objectFit: "cover" }} unoptimized />
+                  </div>
+                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-code)", wordBreak: "break-all" }}>{profileData.avatar}</span>
+                </div>
+              ) : null}
+            </div>
+
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "16px" }}>
               <div className="admin-form-group">
                 <label>Display Name / Handle</label>
@@ -1840,14 +1962,14 @@ export default function AdminDashboardPage() {
                   </div>
                 )}
 
-                {editingProject.image && (
+                {editingProject.image ? (
                   <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "16px" }}>
                     <div style={{ width: "128px", height: "72px", border: "1px solid var(--border-medium)", position: "relative", overflow: "hidden" }}>
-                      <Image src={editingProject.image} alt="Preview" fill sizes="128px" style={{ objectFit: "cover" }} />
+                      <SafeImage src={editingProject.image} alt="Preview" fill sizes="128px" style={{ objectFit: "cover" }} unoptimized />
                     </div>
-                    <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-code)" }}>{editingProject.image}</span>
+                    <span style={{ fontSize: "0.8rem", color: "var(--text-muted)", fontFamily: "var(--font-code)", wordBreak: "break-all" }}>{editingProject.image}</span>
                   </div>
-                )}
+                ) : null}
               </div>
 
               <div style={{ display: "flex", gap: "12px", marginTop: "12px", justifyContent: "flex-end" }}>

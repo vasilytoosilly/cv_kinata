@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SafeImage from "@/components/SafeImage";
 import portfolioData from "@/../data/portfolio.json";
 import Navbar from "@/components/Navbar";
 import StatusBadge from "@/components/StatusBadge";
@@ -321,7 +322,7 @@ export default function Home() {
                     aria-label={`View ${project.title}`}
                   >
                     <div className="project-image-wrap">
-                      <Image
+                      <SafeImage
                         src={project.image}
                         alt={project.title}
                         width={800}

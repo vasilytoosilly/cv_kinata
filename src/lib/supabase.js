@@ -136,9 +136,29 @@ export async function uploadFileToStorage({ buffer, originalName, folderType, co
   const isPdf = folderType === "cv" || /\.pdf$/i.test(originalName);
 
   let subFolder = "images/projects";
-  if (isVideo) subFolder = "videos";
-  else if (isPdf) subFolder = "cv";
+  if (isVideo) {
+    subFolder = "videos";
+  } else if (isPdf) {
+    subFolder = "cv";
+  } else if (folderType === "hero") {
+    subFolder = "images/hero";
+  } else if (folderType === "profile") {
+    subFolder = "images/profile";
+  }
 
+  const getMimeType = () => {
+    if (contentType) return contentType;
+    if (isVideo) return "video/mp4";
+    if (isPdf) return "application/pdf";
+    if (/\.png$/i.test(originalName)) return "image/png";
+    if (/\.webp$/i.test(originalName)) return "image/webp";
+    if (/\.svg$/i.test(originalName)) return "image/svg+xml";
+    if (/\.gif$/i.test(originalName)) return "image/gif";
+    if (/\.avif$/i.test(originalName)) return "image/avif";
+    return "image/jpeg";
+  };
+
+  const resolvedContentType = getMimeType();
   const storagePath = `${subFolder}/${uniqueName}`;
 
   // If Supabase is configured, upload to bucket
@@ -148,7 +168,7 @@ export async function uploadFileToStorage({ buffer, originalName, folderType, co
       const { error } = await supabaseAdmin.storage
         .from(BUCKET_NAME)
         .upload(storagePath, buffer, {
-          contentType: contentType || (isVideo ? "video/mp4" : isPdf ? "application/pdf" : "image/jpeg"),
+          contentType: resolvedContentType,
           upsert: true,
         });
 

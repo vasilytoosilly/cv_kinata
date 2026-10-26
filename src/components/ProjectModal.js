@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 
 export default function ProjectModal({ project, onClose }) {
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function ProjectModal({ project, onClose }) {
         </button>
 
         <div className="modal-image-wrap">
-          <Image
+          <SafeImage
             src={project.image}
             alt={project.title}
             width={1200}

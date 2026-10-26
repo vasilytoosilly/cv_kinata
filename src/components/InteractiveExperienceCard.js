@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 
 export default function InteractiveExperienceCard({ item }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -48,7 +48,7 @@ export default function InteractiveExperienceCard({ item }) {
               key={src}
               className={`card-ambient-image-wrap ${idx === activeIdx ? "active" : ""}`}
             >
-              <Image
+              <SafeImage
                 src={src}
                 alt=""
                 fill
